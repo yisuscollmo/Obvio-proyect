@@ -1,0 +1,150 @@
+#container_main {
+    display: flex;
+    flex-direction: column;
+    background-image: url(../src/assets/image/fondo_ciudad.jpg);
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden !important;
+  }
+  
+  #main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 11.4rem);
+  
+  }
+  
+  .link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: max-content;
+    height: max-content;
+    color: #ffffff;
+  }
+  
+  nav {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 6.4rem;
+    background-color: transparent;
+  }
+  
+  #logo {
+    display: flex;
+    flex-flow: column;
+    height: 8rem;
+    width: 10rem;
+    margin-top: 4rem;
+  }
+  
+  footer {
+    display: flex;
+    height: 4rem;
+    background-color: transparent;
+    justify-content: flex-end;
+  }
+  
+  #redes {
+    display: flex;
+    flex-flow: row;
+    /* margin: 2rem;
+    width: 18rem;
+    height: 5rem;
+    margin: 0; */
+    /* border: 1px solid black; */
+    text-align: center;
+  
+  
+  
+  }
+  
+  #ini {
+    display: block;
+
+    width: max-content;
+    height: 3rem;
+    font-size: 1.5rem;
+   
+    border: 0;
+    font-family: fantasy;
+    transition: none !important;
+
+
+  }
+  .btn-outline-success {
+    color: none !important;
+    border-color: none !important;
+}
+.btn-outline-success {
+    color: none !important;
+    border-color: none !important;
+}
+
+.btn-outline-success.focus, .btn-outline-success:focus {
+    box-shadow: none !important;
+}
+  
+ 
+  #conte {
+    display: flex;
+    flex-flow: column;
+    /* border: 3px solid red; */
+
+    width: max-content;
+    height: 6.4rem;
+    margin: 0;
+
+    justify-content: center;
+  
+  }
+  #conte div{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .facebook,
+  .instagram,
+  .youtube,
+  .twitter,
+  .whatsapp {
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-left: 1rem;
+  }
+  #raya{
+    font-size: 3em;
+    background: transparent;
+    color: #ffffff;
+    border: 0;
+    display: none;
+  }
+  @media(max-width: 600px) {
+    #raya {
+        display: block;
+    }
+    #conte{
+      display: none;
+    }
+  }
+  .dropdown-menu{
+    background: rgba(0, 0, 0, 0.705);
+    backdrop-filter: blur(3px) brightness(150%);
+    width: 4em !important;
+  }
+  #inira {
+    display: block;
+    width: 6.6em;
+    height: 3rem;
+    font-size: 1.5rem;
+    border: 0;
+    font-family: fantasy;
+    transition: none !important;
+
+
+  }

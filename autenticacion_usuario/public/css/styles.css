@@ -1,0 +1,39 @@
+
+
+.row{
+    display: flex;
+    flex-flow: column;
+    width: 40rem;
+    height: 30rem;
+    /* border: 1px solid red; */
+    background-color: aliceblue;
+    border-radius: 30px;
+    position: relative;
+    bottom: 4rem;
+    
+}
+.container_body {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+    width: 100%;
+    /* border: 5px solid red; */
+    background-color: black;
+    
+}
+#segundo_color{
+    display: flex;
+    height: 20vh;
+    width: 100vw;
+    background-color: green;
+}
+#enviar{
+    display: flex;
+    background-color:  green;
+    margin-top: 25rem;
+    margin-left: 14rem;
+}
+.input{
+    display: flex;
+    margin-top: 5rem;
+}

@@ -1,0 +1,44 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.container_body{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+     /* margin-bottom: 1rem; */
+    background:gainsboro ;
+    /* border: 5px solid red; */
+  
+
+}
+main{
+
+    display: flex;
+    width: calc(100vw - 80px);
+    /* border: 4px solid blue; */
+    overflow: scroll;
+     
+   
+}
+
+.botones{
+    display: flex;
+    flex-flow: column;
+    width: 80px;
+    height: 100%;
+    background: #000000;
+}
+#boton{
+    display: block;
+    width: 100%;
+    height: 3rem;
+    font-size: 1.5rem;
+    border: 0;
+    font-family: fantasy;
+    transition: none !important;
+  }
+  img{
+    width: 100%;
+ }

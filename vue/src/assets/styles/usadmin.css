@@ -1,0 +1,69 @@
+#usadmin{
+    /* border: 5px solid red; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll ;
+}
+.figure{
+width: 4em;
+height: 4em;
+margin: 0;
+
+}
+img{
+    border-radius: 100% !important;
+    width: 4rem;
+    height: 4rem;
+}
+#filtro {
+    display: flex;
+    z-index: 1;
+    background-color: gainsboro;
+    position: sticky;
+    width: 100%;
+    height: 5rem;
+    /* border: 1px solid yellow; */
+    top: 0;
+    justify-content: space-between;
+    /* border-bottom: 3px solid black; */
+    -webkit-box-shadow: -5px 3px 31px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px 3px 31px -8px rgba(0,0,0,0.75);
+  box-shadow: -5px 3px 31px -8px rgba(0,0,0,0.75);
+  }
+  
+  #busca {
+    margin-left: 2rem;
+    margin-top: 7px;
+    height: 3.5em;
+    width: 15em;
+  
+  }
+  #new_employee {
+    display: flex;
+    flex-direction: column;
+    font-size: 3.5em;
+    margin-right: 0.5em !important;
+    margin-top: 7px;
+    color: green;
+  
+   
+  }
+  #crea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3em !important;
+    margin-top: 5px;
+    width: 3.9em;
+    height: 3.9em;
+    border-radius: 100px;
+  
+  }
+    
+  #mas {
+  
+    font-size: 2em;
+  }

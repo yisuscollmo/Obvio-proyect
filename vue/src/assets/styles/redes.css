@@ -1,0 +1,60 @@
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    height: 3rem;
+    background: transparent;
+  
+ 
+   
+  
+}
+#redes {
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+   
+    height: 3em;
+    /* border: 1px solid red; */
+    text-align: center;
+   
+
+}
+.redes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: max-content;
+    height: 3em;
+    /* border: 3px solid rgb(247, 2, 157); */
+    margin-bottom:1em ;
+}
+.facebook,
+.instagram,
+.youtube,
+.twitter,
+.whatsapp {
+
+    color: #ffffff;
+    font-size: 2.3rem;
+    margin: 0.5rem;
+ 
+    /* border: 1px solid yellow; */
+
+}
+.facebook:hover,
+.instagram:hover,
+.youtube:hover,
+.twitter:hover,
+.whatsapp:hover{
+    transform: scale(1.05);
+}
+a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+}
+
+

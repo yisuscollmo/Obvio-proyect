@@ -1,0 +1,41 @@
+#vemployee {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: 100%;
+}
+
+#filtro {
+    display: flex;
+    z-index: 2;
+    background-color: gainsboro;
+    position: sticky;
+    width: 100%;
+    height: 5rem;
+    top: 0;
+    justify-content: space-between;
+    -webkit-box-shadow: -5px 3px 31px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -5px 3px 31px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: -5px 3px 31px -8px rgba(0, 0, 0, 0.75);
+}
+#busca {
+    margin-left: 2rem;
+    margin-top: 7px;
+    height: 3.5em;
+    width: 15em;
+
+}
+#container_ventas {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 5rem);
+    width: 98%;
+    overflow-y: scroll;
+    margin-left: 1rem;
+}
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: gainsboro;
+}

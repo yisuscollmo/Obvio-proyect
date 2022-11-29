@@ -1,0 +1,126 @@
+.container-body {
+  display: flex;
+  flex-flow: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  /* border: 5px solid rebeccapurple; */
+}
+.container-main {
+    display: flex;
+    height: auto;
+    flex-flow: column;
+    height: max-content;
+    width: 100%;
+    /* border: 5px solid green; */
+    align-items: center;
+}
+form {
+    display: flex;
+    flex-flow: column;
+    width: 30em;
+    color: #ffffff;
+    border-radius: 3%;
+    background: rgba(0, 0, 0, 0.705);
+    backdrop-filter: blur(3px) brightness(150%);
+    text-align: center;
+    /* border: 5px solid yellow; */
+}
+#nombre {
+    margin: 1rem;
+    font-size: 3rem;
+    font-family: fantasy;
+    text-shadow: 3px 7px 1px #757474;
+
+}
+#enviar {
+    width: max-content;
+    height: max-content;
+    font-size: 1.8rem;
+    border: 0;
+    font-family: fantasy;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+/* REDES */
+.redes2 {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    margin: 0.5rem;
+    padding: 0;
+}
+.circulo {
+    font-size: 2.2em;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 100%;
+    text-align: center;
+    margin: 0 1rem;
+    text-decoration: none;
+    color: white;
+    -webkit-transition: all 400ms ease-out;
+    -moz-transition: all 400ms ease-out;
+    -ms-transition: all 400ms ease-out;
+    -o-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+}
+a.circulo:hover {
+    color: white;
+    transform: scale(1.1);
+    filter: brightness(120%);
+}
+.facebook {
+    background: #3B5598;
+}
+.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+.twitter {
+    background: #55ACEE;
+}
+#n_red {
+    font-size: 1.8rem;
+    font-family: fantasy;
+    text-shadow: 3px 7px 1px #757474;
+}
+/* BOTONES */
+.btn-outline-success {
+    color: none !important;
+    border-color: none !important;
+}
+.btn-outline-success {
+    color: none !important;
+    border-color: none !important;
+}
+.btn-outline-success.focus,
+.btn-outline-success:focus {
+    box-shadow: none !important;
+}
+
+/* INPUTS */
+input {
+    margin-top: 0.5rem;
+    height: 1em !important;
+}
+
+label {
+  padding: 0;
+
+}
+.form-floating {
+  margin: 1rem;
+}
+
+@media(max-width: 600px) {
+  form {
+      width: 80vw;
+      height: 65vh;
+    
+  }
+
+}
