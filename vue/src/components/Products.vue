@@ -6,18 +6,19 @@
           @keyup="filtrar()" id="busca">
       </form>
       <!-- Button trigger modal crear -->
-      <i class="bi bi-plus-circle-dotted" data-bs-toggle="modal" data-bs-target="#crear" id="mas"></i>
-    </div>
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#crear" id="crea">
+        <i class="bi bi-plus" id="mas"></i>
+      </button>
 
-    <!-- card2 -->
+    </div>
+    <!-- card -->
     <div id="articulos">
       <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar">
         <div class="row g-0">
 
           <figure class="figure">
-            <img src="../assets/image/default.jpg" class="figure-img img-fluid rounded" >
+            <img src="../assets/image/default.jpg" class="figure-img img-fluid rounded">
           </figure>
-
 
           <div class="col-md-8">
             <div class="card-body">
@@ -44,20 +45,20 @@
                     </div>
                   </li>
                 </div>
-              </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
   </div>
+ 
   <!-- Modal-eliminar -->
   <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5>product</h5>
-
         </div>
         <div class="modal-body">
           estas seguro de elimar el producto {{ nameborrar.name }}
@@ -107,7 +108,6 @@
               <label for="message-text" class="col-form-label">description:</label>
               <textarea class="form-control" id="message-text" v-model="product_edit.description"></textarea>
             </div>
-
           </form>
         </div>
         <div class="modal-footer">
@@ -160,7 +160,6 @@
               <textarea class="form-control" id="message-text" v-model="product.description">
               </textarea>
             </div>
-
           </form>
         </div>
         <div class="modal-footer">
@@ -173,7 +172,6 @@
 
 </template>
 <script>
-
 export default {
   data() {
     return {
@@ -190,16 +188,13 @@ export default {
         selling_price: "",
         categories_id: "",
         active: "",
-
       },
       product_edit: {},
-
     };
   },
   mounted() {
     this.get_products();
   },
-
   methods: {
     async get_products() {
       let response = await this.axios.get("/api/articles");
@@ -217,9 +212,7 @@ export default {
     async update_products() {
       let id = this.product_edit.id;
       let response = await this.axios.put("/api/articles" + id, this.product_edit);
-
     },
-
     async delete_product(p) {
       let id = p;
       console.log(id);
@@ -239,123 +232,7 @@ export default {
     },
   },
 };
-
-
 </script>
-
 <style scoped>
-#filtro {
-  display: flex;
-  z-index: 1;
-  background-color: gainsboro;
-  position: sticky;
-  width: 100%;
-  height: 5rem;
-  /* border: 1px solid yellow; */
-  top: 0;
-  justify-content: space-between;
-  /* border-bottom: 3px solid black; */
-  -webkit-box-shadow: -5px 3px 31px -8px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -5px 3px 31px -8px rgba(0, 0, 0, 0.75);
-  box-shadow: -5px 3px 31px -8px rgba(0, 0, 0, 0.75);
-}
-
-#busca {
-  margin-left: 2rem;
-  margin-top: 7px;
-  height: 3.5em;
-  width: 15em;
-
-}
-
-#mas {
-  display: flex;
-  flex-direction: column;
-  font-size: 3.5em;
-  margin-right: 0.5em !important;
-  margin-top: 7px;
-  color: green;
-
-
-}
-
-#product {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  height: 100%;
-  /* border: 2px solid red; */
-}
-
-#articulos {
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  overflow-y: scroll;
-  width: 100%;
-  height: calc(100% - 5rem);
-  /* border: 2px solid blue; */
-}
-
-.card {
-
-  display: flex;
-  flex-flow: column;
-  margin: 1rem;
-  /* height: 15rem; */
-  /* border: 2px solid black;  */
-}
-
-figure {
-  height: 12rem;
-  width: 12rem;
-}
-
-#drop {
-  /* padding-left: 15em; */
-  /* border: 1px solid red; */
-  justify-content: end;
-  display: flex;
-  /* background-color: ; */
-}
-
-
-#img {
-  height: 100%;
-}
-
-.dropdown-menu {
-  margin-left: -9em !important;
-}
-
-#edi-eli {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  /* border: 3px solid yellow; */
-  height: max-content;
-  width: 7em;
-  margin-left: 1.3em !important;
-
-
-}
-
-#inv-code {
-  display: flex;
-  margin-top: -1em;
-  height: max-content;
-  /* justify-content: end; */
-  /* border: 2px solid black; */
-  justify-content: space-between;
-
-}
-
-.card:hover {
-  border: 2px solid green;
-  -webkit-box-shadow: 17px 12px 26px -17px rgba(0, 0, 0, 0.57);
-  -moz-box-shadow: 17px 12px 26px -17px rgba(0, 0, 0, 0.57);
-  box-shadow: 17px 12px 26px -17px rgba(0, 0, 0, 0.57);
-}
+@import url(/src\assets\styles\products.css);
 </style>
-

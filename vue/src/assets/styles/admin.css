@@ -8,21 +8,16 @@
     width: 100%;
     height: 100%;
      /* margin-bottom: 1rem; */
-    background:gainsboro ;
+    background: #ffffff;
     /* border: 5px solid red; */
-  
-
 }
 
 main{
-
     display: flex;
     width: calc(100vw - 80px);
     /* border: 4px solid blue; */
-    /* overflow: scroll;    */
-   
+    /* overflow: scroll;    */ 
 }
-
 .botones{
     display: flex;
     flex-flow: column;
@@ -30,7 +25,6 @@ main{
     /* height: 100%; */
     background: #000000;
     z-index: 1;
-
 }
 #boton{
     display: block;
@@ -43,8 +37,5 @@ main{
   }
   #perfil{
     background-color: gainsboro;
-    
   }
- img{
-    width: 100%;
- }
+ 

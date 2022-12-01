@@ -1,19 +1,19 @@
 <template>
-
-    <div id="ventas">
+ <div id="ventas">
         <div id="filtro">
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search"
                     @keyup="filtrar()" id="busca">
+                </form>
                 <!-- Button trigger modal crear -->
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#creventa"
                     id="crea">
                     <i class="bi bi-folder-plus" id="mas"></i>
                 </button>
-            </form>
+           
         </div>
         <div id="container_ventas">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Sale number</th>
@@ -23,7 +23,6 @@
                 </thead>
                 <tbody v-for="p in ventas_copia">
                     <tr>
-
                         <td>{{p.sales_number}}</td>
                         <td>{{p.state}}</td>
                         <td>{{p.date}}</td>
@@ -38,21 +37,17 @@
                                 </button></td>
                         </div>
                     </tr>
-
                 </tbody>
-
             </table>
         </div>
-
-
     </div>
+  
     <!-- Modal-eliminar -->
     <div class="modal fade" id="eliventa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>venta</h5>
-
                 </div>
                 <div class="modal-body">
                     estas seguro de elimar esta venta
@@ -74,7 +69,6 @@
                 </div>
                 <div class="modal-body">
                     <form>
-
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Sale number:</label>
                             <input type="text" class="form-control" id="recipient-name">
@@ -87,7 +81,6 @@
                             <label for="recipient-name" class="col-form-label">Data:</label>
                             <input type="text" class="form-control" id="recipient-name">
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -107,7 +100,6 @@
                 </div>
                 <div class="modal-body">
                     <form>
-
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Sale number:</label>
                             <input type="text" class="form-control" id="recipient-name">
@@ -120,7 +112,6 @@
                             <label for="recipient-name" class="col-form-label">Data:</label>
                             <input type="text" class="form-control" id="recipient-name">
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -135,7 +126,6 @@
 <style scoped>
 @import url(/src\assets\styles\ventas.css);
 </style>
-
 <script>
 export default {
     data() {
@@ -144,10 +134,7 @@ export default {
             
             ventas_copia: "",
             search: "",
-
         };
-
-
     },
     mounted() {
         this.get_ventas();
@@ -158,23 +145,15 @@ export default {
             let response = await this.axios.get("/api/sales/")
             this.ventas_list = response.data;
             this.ventas_copia = this.ventas_list;
-
         },
-
         filtrar() {
-
             this.ventas_copia = this.ventas_list.filter(
                 (p) =>
                     (p.sales_number.toString().toLowerCase().indexOf(this.search.toString()) > -1) ||
                     (p.state.toString().toLowerCase().indexOf(this.search.toLowerCase()) > -1) ||
                     (p.date.toString().toLowerCase().indexOf(this.search.toLowerCase()) > -1) 
-
             );
         },
-
-
     },
-
-
 };
 </script>

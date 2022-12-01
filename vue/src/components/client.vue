@@ -8,7 +8,9 @@
             <router-link to="/pclient" type="button" id="boton" class="btn btn-outline-success link"><i
                     class="bi bi-newspaper"></i>
             </router-link>
-            <router-link to="/clientbuys" class="btn btn-outline-success link" >MY buys</router-link>
+            <router-link to="/clientbuys" type="button" id="boton" class="btn btn-outline-success link">
+                <i class="bi bi-cart-check-fill"></i>
+            </router-link>
 
 
 

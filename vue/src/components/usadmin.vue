@@ -1,17 +1,17 @@
 <template>
-    <div id="usadmin">
-        <div id="container_usadmin">
-            <div id="filtro">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                        v-model="search" @keyup="filtrar()" id="busca">
-                </form>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#employee"
-                    id="crea">
-                    <i class="bi bi-folder-plus" id="mas"></i>
-                </button>
-            </div>
-            <table class="table">
+     <div id="usadmin">
+        <div id="filtro">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search"
+                    @keyup="filtrar()" id="busca">
+            </form>
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#employee" id="crea">
+                <i class="bi bi-person-plus-fill" id="mas"></i>
+            </button>
+        </div>
+        <div id="table_users">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th></th>
@@ -19,6 +19,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Rol</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,24 +33,22 @@
                         <td>{{ u.name }}</td>
                         <td>{{ u.email }}</td>
                         <td>{{ u.roles_id }}</td>
-                        <div>
-                            <td> <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#ediventa">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </button></td>
-                            <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#eliventa">
-                                    <i class="bi bi-trash"></i>
-                                </button></td>
-                        </div>
+                        <td>
+                        <td> <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#ediventa">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button></td>
+                        <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#eliventa">
+                                <i class="bi bi-trash"></i>
+                            </button></td>
+                        </td>
                     </tr>
-
                 </tbody>
-
             </table>
         </div>
-        
     </div>
+  
      <!-- Modal-crear -->
      <div class="modal fade" id="employee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -60,7 +59,6 @@
                 </div>
                 <div class="modal-body">
                     <form>
-
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Sale number:</label>
                             <input type="text" class="form-control" id="recipient-name">
@@ -73,7 +71,6 @@
                             <label for="recipient-name" class="col-form-label">Data:</label>
                             <input type="text" class="form-control" id="recipient-name">
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -83,7 +80,6 @@
             </div>
         </div>
     </div>
- 
 
 </template>
 <style scoped>
