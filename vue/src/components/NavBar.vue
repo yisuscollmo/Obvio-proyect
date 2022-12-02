@@ -14,7 +14,9 @@
     <router-link to="/client" type="button" id="ini" class="btn btn-outline-success link">CLIENT </router-link>
     <router-link to="/employee" type="button" id="ini" class="btn btn-outline-success link">EMPLOYEE </router-link>
   </div>
-
+<div>
+  <router-link to="/account" type="button" id="ini" class="btn btn-outline-success link">account</router-link>
+</div>
 
 </div>
 <!-- Default dropstart button -->
@@ -114,14 +116,14 @@
  
   #conte {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     /* border: 3px solid red; */
 
-    width: max-content;
+    width: 100%;
     height: 6.4rem;
     margin: 0;
 
-    justify-content: center;
+    justify-content: space-around;
   
   }
   #conte div{
