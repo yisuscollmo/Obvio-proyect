@@ -35,11 +35,13 @@
 
                   <li class="dropdown-menu">
                     <div id="edi-eli">
-                      <button type="button" class="btn btn-success" data-bs-toggle="modal" @click="edit_product(p)"
+                      <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                       @click="edit_product(p)"
                         data-bs-target="#editar">
                         <i class="bi bi-pencil-fill"></i>
                       </button>
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar">
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
+                      data-bs-target="#eliminar" @click="eliminar(p.id)">
                         <i class="bi bi-trash"></i>
                       </button>
                     </div>
@@ -65,7 +67,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
-          <button type="button" class="btn btn-danger" @click="delete_product(p.id)">eliminar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="delete_product()">eliminar</button>
         </div>
       </div>
     </div>
@@ -111,8 +113,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" @click="update_products()">edit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="close">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="update_products()">edit</button>
         </div>
       </div>
     </div>
@@ -163,7 +165,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="close">Close</button>
           <button type="button" class="btn btn-success"  data-bs-dismiss="modal" @click="new_product()">create</button>
         </div>
       </div>
@@ -191,6 +193,7 @@ export default {
         image:'1'
       },
       product_edit: {},
+      idelete:""
     };
   },
   mounted() {
@@ -214,12 +217,22 @@ export default {
     },
     async update_products() {
       let id = this.product_edit.id;
-      let response = await this.axios.put("/api/articles" + id, this.product_edit);
+      let response = await this.axios.put("/api/articles/" + id, this.product_edit)
+      .then(this.close());
+      this.get_products();
+    },
+    close(){
+      this.product="";
+      this.edit_product="";
+    },
+    eliminar(id){
+      this.idelete=id
     },
     async delete_product(p) {
-      let id = p;
+      let id = this.idelete;
       console.log(id);
-      let response = await this.axios.delete("/api/articles" + id);
+      let response = await this.axios.delete("/api/articles/" + id);
+      this.get_products();
 
     },
     filtrar() {

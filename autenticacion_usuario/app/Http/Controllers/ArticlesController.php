@@ -159,10 +159,21 @@ class ArticlesController extends Controller
 
         $article = Article::find($article);
      
-        $article->fill($request->all())->save(); 
-        return response()->json([
-                'article'=>$article
-            ]);
+        $article->image="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"; 
+        $article->name=$request->name;
+        $article->code=$request->code;
+        $article->categories_id=$request->categories_id;
+        $article->selling_price=$request->selling_price;
+        $article->stock=$request->stock;
+        $article->description=$request->description;
+        $article->active=$request->active;
+
+        $article->save();
+
+        // $article->fill($request->all())->save(); 
+        // return response()->json([
+        //         'article'=>$article
+        //     ]);
 
         //
     }
