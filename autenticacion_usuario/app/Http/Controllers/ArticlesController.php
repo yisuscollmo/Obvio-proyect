@@ -40,10 +40,13 @@ class ArticlesController extends Controller
     {
 
         // $request->validate([
-        //     'name' => 'required|string',
-        //     'email' => 'required|email|unique:users',
-        //     'password' => 'required|min:6|confirmed',
-        //     'image' => 'nullable|image'
+        //     'name' => $request->name, 
+        //     'code' => $request->code,
+        //     'categories_id' => $request->categories_id,
+        //     'selling_price' => $request->selling_price,
+        //     'stock' => $request->stock,
+        //     'description' => $request->description,
+        //     'active' => $request->active,
         // ]);
 
         // //Save image in server and get its url
@@ -65,7 +68,19 @@ class ArticlesController extends Controller
         // );
 
 
-        $new_article = Article::create($request->all());
+        // $new_article = Article::create($request->all());
+        $new_article = Article::create([
+
+            'image' => "https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg",
+            'name' => $request->name, 
+            'code' => $request->code,
+            'categories_id' => $request->categories_id,
+            'selling_price' => $request->selling_price,
+            'stock' => $request->stock,
+            'description' => $request->description,
+            'active' => $request->active,
+
+        ]);
         $new_article->save();
 
         // $articles = Article::create($request->post());

@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->bigInteger('selling_price');
             $table->integer('stock');
             $table->string('description', 100);
-            $table->string('image', 100);
+            $table->string('image', 300);
             $table->boolean('active');
         
             $table->timestamps();

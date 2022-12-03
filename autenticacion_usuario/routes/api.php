@@ -36,6 +36,6 @@ Route:: middleware(['auth:sanctum'])->group(function(){
 Route::get('/user', [AuthController::class, 'user']);
 }
 );
-Route::resource('articles', ArticlesController::class);
+Route::resource('/articles', ArticlesController::class);
 Route::resource('/users', Usercontroller::class);
-Route::resource('sales', SalesController::class);
+Route::resource('/sales', SalesController::class);

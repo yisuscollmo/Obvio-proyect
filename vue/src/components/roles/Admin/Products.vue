@@ -17,7 +17,7 @@
         <div class="row g-0">
 
           <figure class="figure">
-            <img src="./image/default.jpg" class="figure-img img-fluid rounded">
+            <img :src="p.image" class="figure-img img-fluid rounded">
           </figure>
 
           <div class="col-md-7">
@@ -148,7 +148,7 @@
               <input type="text" class="form-control" id="recipient-name" v-model="product.stock">
             </div>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">active:</label>
+              <label for="recipient-name" class="col-form-label">categoria:</label>
               <input type="text" class="form-control" id="recipient-name" v-model="product.categories_id">
             </div>
             <div class="mb-3">
@@ -164,7 +164,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success">edit</button>
+          <button type="button" class="btn btn-success"  data-bs-dismiss="modal" @click="new_product()">create</button>
         </div>
       </div>
     </div>
@@ -188,6 +188,7 @@ export default {
         selling_price: "",
         categories_id: "",
         active: "",
+        image:'1'
       },
       product_edit: {},
     };
@@ -201,8 +202,10 @@ export default {
       this.product_list = response.data;
       this.product_list_mostrar = this.product_list;
     },
-    async new_products() {
+    async new_product() {
+      console.log(this.product);
       let response = await this.axios.post("/api/articles", this.product);
+      this.get_products();
 
     },
     edit_product(p) {
