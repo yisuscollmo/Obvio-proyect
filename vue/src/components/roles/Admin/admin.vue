@@ -33,7 +33,7 @@
                     <p>Email: {{user.email}}</p>
                     <p>created_at: {{ user.created_at }}</p>
                    
-                    <button @click="logout()">Logout</button>
+                    <button @click="logout()" class="btn btn-success ">Logout</button>
                 </div>
         </div>
         <!-- <div id="user_data">
