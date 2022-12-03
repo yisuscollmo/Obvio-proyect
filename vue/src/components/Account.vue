@@ -1,18 +1,13 @@
 <template>
-    <!-- <div id="dato">
-        <h1> mi perfil </h1>
-        <p>name: {{ user.name }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>created_at: {{ user.created_at }}</p>
-       
-        <button @click="logout()">Cerrar Sesión</button>
-    </div> -->
+ <h1>
+    Account:
+ </h1>
     <router-view>
 
     </router-view>
 </template>
 <style>
-#dato {
+h1 {
     color: #ffffff;
 }
 </style>

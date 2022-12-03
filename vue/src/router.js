@@ -48,11 +48,11 @@ const routes= [
         redes:redes,
             default: Register,}
 },
-// {
-//     path:"/account",
-//     name:"Account",
-//     component:Account,
-//     children:[
+{
+    path:"/account",
+    name:"Account",
+    component:Account,
+    // children:[
         // {
         //     path: "/admin",
         //     name: "admin",
@@ -76,11 +76,11 @@ const routes= [
         //             component:usadmin,
                     
         //         },
-                    // {
-                    //     path:"/images",
-                    //     name:"images",
-                    //     component:images
-                    // },
+        //             {
+        //                 path:"/images",
+        //                 name:"images",
+        //                 component:images
+        //             },
         //     ]
             
         // },
@@ -109,7 +109,7 @@ const routes= [
         // },
 
     // ]
-// },
+},
 {
     path: "/admin",
     name: "admin",
