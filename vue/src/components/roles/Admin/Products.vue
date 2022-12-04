@@ -41,7 +41,7 @@
                         <i class="bi bi-pencil-fill"></i>
                       </button>
                       <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
-                      data-bs-target="#eliminar" @click="eliminar(p.id)">
+                      data-bs-target="#eliminar" @click="eliminar(p.name)">
                         <i class="bi bi-trash"></i>
                       </button>
                     </div>
@@ -60,10 +60,10 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5>product</h5>
+          <h5> Delete Product</h5>
         </div>
         <div class="modal-body">
-          estas seguro de elimar el producto {{ nameborrar.name }}
+          estas seguro de elimar el producto {{nameborrar}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
@@ -77,7 +77,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">edit</h1>
+          <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Edit product</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -124,7 +124,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">create new product</h1>
+          <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">create new product</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -225,9 +225,11 @@ export default {
       this.product="";
       this.edit_product="";
     },
-    eliminar(id){
-      this.idelete=id
+    eliminar(name){
+             this.nameborrar=name;
+             console.log('a borra' + this.produlete);
     },
+
     async delete_product(p) {
       let id = this.idelete;
       console.log(id);
