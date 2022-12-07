@@ -11,8 +11,9 @@
       </button>
 
     </div>
-    <!-- card -->
+   
     <div id="articulos">
+       <!-- card -->
       <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar">
         <div class="row g-0">
 
