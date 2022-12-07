@@ -10,7 +10,7 @@ class detail extends Model
     use HasFactory;
     protected $fillable = [
         'dni',
-        'image',
+        
         // 'name',
         // 'email',
         'dni_type',

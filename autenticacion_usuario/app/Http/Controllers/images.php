@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cr;
+use App\Models\images as ModelsImages;
 use Illuminate\Http\Request;
 
 class images extends Controller
@@ -14,6 +15,10 @@ class images extends Controller
      */
     public function index()
     {
+
+      $images= ModelsImages::all();
+      return response()->json($images);
+    
         //
     }
 
@@ -44,8 +49,9 @@ class images extends Controller
      * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function show(cr $cr)
+    public function show($cr)
     {
+        
         //
     }
 

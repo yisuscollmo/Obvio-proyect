@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NewPasswordController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\images;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\Usercontroller;
 use Illuminate\Http\Request;
@@ -39,3 +40,4 @@ Route::get('/user', [AuthController::class, 'user']);
 Route::resource('/articles', ArticlesController::class);
 Route::resource('/users', Usercontroller::class);
 Route::resource('/sales', SalesController::class);
+Route::resource('/images', images::class);

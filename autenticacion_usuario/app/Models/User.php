@@ -25,6 +25,7 @@ class User extends Authenticatable
         // 'details_id',
         // 'buyscont_id',
         'roles_id',
+        'image',
      
 
     ];

@@ -27,8 +27,8 @@
           
             <div id="user_data">
                     <h1> My Profile</h1>
-                    <img src="" alt="">
                     <h2>{{role[user.roles_id]}}</h2>
+                    <img :src="user.image" alt="" style="width: 20rem; height: 20rem; border-radius: 100%; align-items: center;">
                     <p>Name: {{user.name}}</p>
                     <p>Email: {{user.email}}</p>
                     <p>created_at: {{ user.created_at }}</p>
@@ -36,15 +36,7 @@
                     <button @click="logout()" class="btn btn-success ">Logout</button>
                 </div>
         </div>
-        <!-- <div id="user_data">
-                    <h1> My Profile</h1>
-                    <h2>{{role[user.roles_id]}}</h2>
-                    <p>Name: {{user.name}}</p>
-                    <p>Email: {{user.email}}</p>
-                    <p>created_at: {{ user.created_at }}</p>
-                   
-                    <button @click="logout()">Logout</button>
-                </div> -->
+      
 
         <main>
 

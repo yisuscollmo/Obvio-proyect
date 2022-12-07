@@ -17,7 +17,7 @@ class CreateDetailsTable extends Migration
             $table->id();
             $table->bigInteger('dni');
             $table->foreignId('users_id')->constrained();
-            $table->string('image', 300);
+          
             // $table->string('name', 100);
             // $table->string('email', 100);
             $table->string('dni_type', 30);

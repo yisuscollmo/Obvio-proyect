@@ -15,7 +15,7 @@ class DetailFactory extends Factory
     {
         return [
             
-            'image' => "",
+          
             'dni' => $this->faker->ean8(),  
             'users_id' => $this->faker->numberBetween(1, 10), 
             'dni_type' => $this->faker->name(),

@@ -26,15 +26,10 @@
         </div>
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- <div class="carousel-item active">
-                    <img src="../assets/image/1.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-item active" v-for="i in images_list">
+                    <img :src="i.image" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-item">
-                    <img src="../assets/image/2.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/image/3.jpg" class="d-block w-100" alt="...">
-                </div> -->
+               
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
                 data-bs-slide="prev">
@@ -58,3 +53,26 @@
 <style scoped>
 @import url(/src\assets\styles\home.css);
 </style>
+<script>
+export default {
+  data() {
+    return {
+      images_list: [],
+    
+    };
+  },
+  mounted() {
+    this.get_images();
+  },
+  methods: {
+    async get_images() {
+      let response = await this.axios.get("/api/images");
+      this.images_list = response.data;
+    
+    },
+   
+   
+  },
+};
+
+</script>

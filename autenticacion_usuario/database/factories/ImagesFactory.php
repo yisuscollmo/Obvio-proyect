@@ -14,6 +14,9 @@ class ImagesFactory extends Factory
     public function definition()
     {
         return [
+
+            'name' => $this->faker->name(''),
+            'image' => "https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png",
             //
         ];
     }

@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-
+use App\Http\Controllers\images as ControllersImages;
 use App\Models\Article;
 use App\Models\Buys_cont;
 use App\Models\Buyscont;
 use App\Models\Categorie;
 use App\Models\detail;
+use App\Models\images;
 use App\Models\Income_conts;
 use App\Models\incomes;
 use App\Models\Provider;
@@ -53,14 +54,15 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => date("Y/m/d"), //verified today
                 'created_at' => date("Y/m/d"), //created today
                 'password' => Hash::make('yisas123'), //default admin password: admin123
-               
-                ]
+                'image' => 'https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black.png',
+            
+            ]
         );
       
         detail::factory(10)->create(); 
-         // 'image' => 'https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black.png',
         Sales::factory(10)->create();
         sales_details::factory(10)->create();
+        images::factory(10)->create();
 
     }
 }
