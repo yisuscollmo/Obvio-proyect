@@ -8,7 +8,11 @@
       <input class="form-control" type="file" id="formFile">
       <div class="d-grid gap-2">
         <br>
+
         <button class="btn btn-success" type="button">Subir imagen</button>
+
+        <button class="btn btn-success" type="button">Button</button>
+
        
       </div>
     </div>
