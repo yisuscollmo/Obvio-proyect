@@ -26,6 +26,7 @@
                 <div id="user_data">
                     <h1> My Profile</h1>
                     <h2>{{ role[user.roles_id] }}</h2>
+                    <img :src="user.image" alt="">
                     <p>Name: {{ user.name }}</p>
                     <p>Email: {{ user.email }}</p>
                     <p>created_at: {{ user.created_at }}</p>
@@ -102,6 +103,7 @@ export default {
                 });
 
                 localStorage.clear();
+            
 
                 this.$router.push({
                     name: "Login",

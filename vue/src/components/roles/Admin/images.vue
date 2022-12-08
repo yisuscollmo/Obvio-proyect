@@ -7,7 +7,8 @@
       <label for="formFile" class="form-label">Default file input example</label>
       <input class="form-control" type="file" id="formFile">
       <div class="d-grid gap-2">
-        <button class="btn btn-success" type="button">Button</button>
+        <br>
+        <button class="btn btn-success" type="button">Subir imagen</button>
        
       </div>
     </div>
@@ -16,7 +17,7 @@
       <div id="art-images">
         <article class="article-image" v-for="i in images_list_mostrar">
           <figure>
-            <h1>{{ i.name }}</h1>
+            <h1 id="neimage">{{ i.name }}</h1>
             <img :src="i.image" alt="">
           </figure>
 
@@ -85,7 +86,7 @@ img {
   border-radius: 1rem;
 }
 
-h1 {
+#neimage {
   position: absolute;
   bottom: -0.5rem;
   border-radius: 1rem;

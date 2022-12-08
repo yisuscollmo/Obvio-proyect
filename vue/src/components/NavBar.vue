@@ -61,9 +61,9 @@
  #logo {
    display: flex;
    flex-flow: column;
-   height: 8rem;
+   height: 4rem;
    width: 10rem;
-   margin-top: 4rem;
+   margin-top: 1rem;
 
  }
 

@@ -3,14 +3,31 @@
     
     <div id="client_buys">
       <div id="container_buys">
-        <article v-for="s in buys_list_show">
+        <!-- <article v-for="s in buys_list_show">
           <p>Date: {{s.date}}</p>
           <p>invoice number: {{s.invoice_number}}</p>
           <p>User: {{s.users_id}}</p>
           <p>Article: {{s.articles_id}}</p>
           <p>State: {{s.state}}</p>
           <p>Total: {{s.total}}</p>
-        </article>
+        </article> -->
+        <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Sale number</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Data</th>
+                    </tr>
+                </thead>
+                <tbody v-for="p in buys_list_show">
+                    <tr>
+                        <td>{{p.sales_number}}</td>
+                        <td>{{p.state}}</td>
+                        <td>{{p.date}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
       </div>
     </div>
   

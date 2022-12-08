@@ -30,6 +30,7 @@
                     <img :src="i.image" class="d-block w-100" alt="...">
                 </div>
                
+              
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
                 data-bs-slide="prev">
