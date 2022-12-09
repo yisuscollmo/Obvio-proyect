@@ -138,6 +138,7 @@ const routes= [
             name:"images",
             component:images
         },
+       
     ]
     
 },

@@ -29,6 +29,9 @@ class images extends Controller
      */
     public function create()
     {
+        
+
+
         //
     }
 
@@ -40,6 +43,17 @@ class images extends Controller
      */
     public function store(Request $request)
     {
+      
+       $direccion=$this->validate_image($request);
+
+        $new_image = ModelsImages::create([
+
+            'image' => $direccion,
+            'name' => $request->name, 
+            
+        ]);
+
+         $new_image->save();  
         //
     }
 
@@ -87,5 +101,17 @@ class images extends Controller
     public function destroy(cr $cr)
     {
         //
+    }
+    public function validate_image($request) {
+        return response('estramos');
+        if ($request->hasfile('image')) {
+            $name = uniqid() . time() . '.' . $request->file('image')->getClientOriginalExtension(); //46464611435281365.jpg
+            $request->file('image')->storeAs('public', $name);
+            return '/storage/app/public' . '/' . $name; //uploads/46464611435281365.jpg
+
+        } else {
+
+            return 'https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg';
+        }
     }
 }

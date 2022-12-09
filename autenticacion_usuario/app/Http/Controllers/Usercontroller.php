@@ -29,6 +29,7 @@ class Usercontroller extends Controller
      */
     public function create()
     {
+        
         //
     }
 
@@ -41,15 +42,41 @@ class Usercontroller extends Controller
     public function store(Request $request)
     {
 
-        $new_user = User::create([
-            
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'image' => 'nullable|image'
+        ]);
+
+        //Save image in server and get its url
+        $url_image = $this->validate_image($request);
+
+        $user = User::create([
+            'roles_id' => 2, //All registered user have the USER role (id=2)
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'roles_id' => $request = 2,
+            'image' => $url_image,
         ]);
+
+        return response(
+            [
+                'message' => 'Cliente creado exitósamente.',
+                'new_user' => $user //Nuevo usuario creado
+            ]
+        );
+
+
+        // $new_user = User::create([
+            
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        //     'roles_id' => $request = 2,
+        // ]);
         
-        $new_user->save();
+        // $new_user->save();
         //
     }
 
@@ -107,5 +134,17 @@ class Usercontroller extends Controller
         $user = User::find($id);
         $user ->delete();
         //
+    }
+    public function validate_image($request) {
+
+        if ($request->hasfile('image')) {
+            $name = uniqid() . time() . '.' . $request->file('image')->getClientOriginalExtension(); //46464611435281365.jpg
+            $request->file('image')->storeAs('public', $name);
+            return '/storage/app/public' . '/' . $name; //uploads/46464611435281365.jpg
+
+        } else {
+
+            return null;
+        }
     }
 }

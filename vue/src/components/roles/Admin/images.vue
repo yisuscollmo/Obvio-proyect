@@ -3,18 +3,19 @@
   <div id="container-images">
     <div class="mb-3" id="inmages">
       <label for="exampleFormControlInput1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name">
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="put a name" v-model="image.name">
       <label for="formFile" class="form-label">Default file input example</label>
-      <input class="form-control" type="file" id="formFile">
+      <input class="form-control" type="file" id="formFile" @change="obtener_image">
+  
       <div class="d-grid gap-2">
+        <figure>
+                <img :src="imagen" id="imagenminiatura" alt="">
+          </figure>
         <br>
+        <button class="btn btn-success" type="button" @click="new_image">Subir imagen</button>
 
-        <button class="btn btn-success" type="button">Subir imagen</button>
-
-        <button class="btn btn-success" type="button">Button</button>
-
-       
       </div>
+
     </div>
     <div id="images">
 
@@ -100,6 +101,10 @@ img {
   /* padding: 0.5rem; */
   color: white;
 }
+#imagenminiatura{
+  width: 7rem;
+  margin: 1rem;
+}
 </style>
 <script>
 export default {
@@ -108,56 +113,58 @@ export default {
       images_list: [],
       images_list_mostrar: [],
       search: "",
-      nameborrar: "",
-      product: {
-        name: "",
-        code: "",
-        image: 1,
-        stock: "",
-        description: "",
-        selling_price: "",
-        categories_id: "",
-        active: "",
-        image: '1'
+      image:{
+        name:"",
+        image:"",
       },
-      product_edit: {},
-      idelete: ""
+      imagenminiatura: "",
     };
   },
   mounted() {
     this.get_images();
   },
   methods: {
+
+    obtener_image(e) {
+
+      let file = e.target.files[0];
+      console.log(file);
+      this.image.image = file;
+      // this.articles_edit.image = file;
+
+      // console.log("image: "+this.articles);
+      // console.log("EDit_image: "+this.articles_edit);
+
+      this.cargarimagen(file);
+    },
+    cargarimagen(file) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        this.imagenminiatura = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    },
     async get_images() {
       let response = await this.axios.get("/api/images");
       this.images_list = response.data;
       this.images_list_mostrar = this.images_list;
     },
-    async new_product() {
-      console.log(this.product);
-      let response = await this.axios.post("/api/articles", this.product);
-      this.get_products();
+    async new_image() {
+      console.log(this.image);
+      let formData = new FormData();
+      formData.append('image', this.image.image);
+      formData.append('name', this.image.name);
+
+      let response = await this.axios.post("/api/images/", formData);
+      console.log("respondio: "+response.data);
+      this.get_images();
 
     },
     edit_product(p) {
       this.product_edit = p;
       this.product_edit.image = 1;
     },
-    async update_products() {
-      let id = this.product_edit.id;
-      let response = await this.axios.put("/api/articles/" + id, this.product_edit)
-        .then(this.close());
-      this.get_products();
-    },
-    close() {
-      this.product = "";
-      this.edit_product = "";
-    },
-    eliminar(name) {
-      this.nameborrar = name;
-      console.log('a borra' + this.produlete);
-    },
-
+   
     async delete_product(p) {
       let id = this.idelete;
       console.log(id);
@@ -177,6 +184,11 @@ export default {
       );
     },
   },
+  computed: {
+    imagen() {
+      return this.imagenminiatura
+    }
+  }
 };
 
 </script>
