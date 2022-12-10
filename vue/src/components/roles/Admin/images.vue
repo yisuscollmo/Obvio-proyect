@@ -8,8 +8,8 @@
       <input class="form-control" type="file" id="formFile" @change="obtener_image">
   
       <div class="d-grid gap-2">
-        <figure>
-                <img :src="imagen" id="imagenminiatura" alt="">
+        <figure v-if="imagenminiatura!=null">
+                <img :src="axios.defaults.baseURL +imagen" id="imagenminiatura" alt="">
           </figure>
         <br>
         <button class="btn btn-success" type="button" @click="new_image">Subir imagen</button>
@@ -117,7 +117,7 @@ export default {
         name:"",
         image:"",
       },
-      imagenminiatura: "",
+      imagenminiatura: null,
     };
   },
   mounted() {
@@ -158,12 +158,12 @@ export default {
       let response = await this.axios.post("/api/images/", formData);
       console.log("respondio: "+response.data);
       this.get_images();
+      this.image="";
+      this.imagenminiatura="";
+      
 
     },
-    edit_product(p) {
-      this.product_edit = p;
-      this.product_edit.image = 1;
-    },
+   
    
     async delete_product(p) {
       let id = this.idelete;

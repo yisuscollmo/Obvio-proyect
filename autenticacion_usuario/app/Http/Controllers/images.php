@@ -103,11 +103,11 @@ class images extends Controller
         //
     }
     public function validate_image($request) {
-        return response('estramos');
+        
         if ($request->hasfile('image')) {
             $name = uniqid() . time() . '.' . $request->file('image')->getClientOriginalExtension(); //46464611435281365.jpg
-            $request->file('image')->storeAs('public', $name);
-            return '/storage/app/public' . '/' . $name; //uploads/46464611435281365.jpg
+            $request->file('image')->storeAs('public/homeges', $name);
+            return '/storage/app/public/homeges' . '/' . $name; //uploads/46464611435281365.jpg
 
         } else {
 

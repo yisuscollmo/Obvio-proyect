@@ -159,7 +159,7 @@ class ArticlesController extends Controller
 
         $article = Article::find($article);
      
-        $article->image="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"; 
+        $article->image="/storage/app/public/homeges/default.jpg"; 
         $article->name=$request->name;
         $article->code=$request->code;
         $article->categories_id=$request->categories_id;

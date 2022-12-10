@@ -42,7 +42,7 @@
                         </td>
                         <td> 
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#delemployee" @click="eliminar(u.name)">
+                                data-bs-target="#delemployee" @click="eliminar(u)">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
@@ -122,15 +122,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel" >Edit Employee</h1>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">{{emplodel}}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                   <h3>seguro de aliminar el Employee: {{emplodel}}?</h3>
+                   <h3>seguro de eliminar este Employee?</h3>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="new_user">Create</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="delete_user">Delete</button>
                 </div>
             </div>
         </div>
@@ -146,16 +146,18 @@ export default {
     data() {
         return {
             users_list: [],
-            produlete:null,
+           
             users_list_mostrar: [],
             search: "",
+            idelete:"",
             employee: {
                 name: "",
                 email: "",
                 password: "",
                 // password_confirmation: "",
                 token: null,
-                roles_id: 1,
+                roles_id: "",
+                image:"",
             },
             emplodel:"",
             employee_edit: {
@@ -184,7 +186,7 @@ export default {
                 console.log(element);
 
             });
-            this.filtrar();
+            this.filtrar_employees();
         },
         async new_user() {
 
@@ -208,11 +210,14 @@ export default {
             this.get_users()
             this.user_edit = "";
         },
-        eliminar(name){
-             this.emplodel=name;
-             console.log('a borra' + this.produlete);
+        eliminar(u){
+             this.emplodel=u.name;
+            this.idelete = u.id;
+             console.log('a borra: ' + this.idelete );
         },
-        async borrar_user(id) {
+        async delete_user() {
+
+            let id=this.idelete;
             console.log(id);
             if (confirm('seguro de eliminar producto')) {
                 await this.axios.delete('/api/users/' + id);
@@ -221,11 +226,21 @@ export default {
                 this.produlete=null
             }
         },
-        filtrar() {
+        filtrar_employees() {
             this.search=2;
             this.users_list_mostrar = this.users_list.filter(
                 (p) =>
 
+                    (p.roles_id.toString().indexOf(this.search.toString()) > -1)
+
+            );
+            this.search="";
+        },
+        filtrar() {
+            
+            this.users_list_mostrar = this.users_list.filter(
+                (p) =>
+                    (p.name.toString().indexOf(this.search.toString()) > -1)
                     (p.roles_id.toString().indexOf(this.search.toString()) > -1)
 
             );

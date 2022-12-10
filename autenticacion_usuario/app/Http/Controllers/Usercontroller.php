@@ -42,41 +42,42 @@ class Usercontroller extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'image' => 'nullable|image'
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required|min:6|confirmed',
+        //     'image' => 'nullable|image'
+        // ]);
 
-        //Save image in server and get its url
-        $url_image = $this->validate_image($request);
+        // //Save image in server and get its url
+        // $url_image = $this->validate_image($request);
 
-        $user = User::create([
-            'roles_id' => 2, //All registered user have the USER role (id=2)
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'image' => $url_image,
-        ]);
-
-        return response(
-            [
-                'message' => 'Cliente creado exitósamente.',
-                'new_user' => $user //Nuevo usuario creado
-            ]
-        );
-
-
-        // $new_user = User::create([
-            
+        // $user = User::create([
+        //     'roles_id' => 2, //All registered user have the USER role (id=2)
         //     'name' => $request->name,
         //     'email' => $request->email,
         //     'password' => Hash::make($request->password),
-        //     'roles_id' => $request = 2,
+        //     'image' => $url_image,
         // ]);
+
+        // return response(
+        //     [
+        //         'message' => 'Cliente creado exitósamente.',
+        //         'new_user' => $user //Nuevo usuario creado
+        //     ]
+        // );
+
+
+        $new_user = User::create([
+            
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'roles_id' => $request = 2,
+            'image' => '/storage/app/public/homege/default.jpg',
+        ]);
         
-        // $new_user->save();
+        $new_user->save();
         //
     }
 
@@ -116,7 +117,8 @@ class Usercontroller extends Controller
         $user->name= $request->name;
         $user->email= $request->email;
         $user->password= Hash::make($request->password);
-        $user->roles_id=2;
+        $user->roles_id= 2;
+        $user->image= '/storage/app/public/homege/default.jpg';
         $user->save();
 
     
@@ -144,7 +146,7 @@ class Usercontroller extends Controller
 
         } else {
 
-            return null;
+            return '/storage/app/public/homege/default.jpg';
         }
     }
 }
