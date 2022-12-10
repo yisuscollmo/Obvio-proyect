@@ -18,7 +18,7 @@
         <div class="row g-0">
 
           <figure class="figure">
-            <img :src="axios.defaults.baseURL +p.image" class="figure-img img-fluid rounded">
+            <img :src="axios.defaults.baseURL + p.image" class="figure-img img-fluid rounded">
           </figure>
 
           <div class="col-md-7">
