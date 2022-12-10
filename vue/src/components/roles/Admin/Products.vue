@@ -42,7 +42,7 @@
                         <i class="bi bi-pencil-fill"></i>
                       </button>
                       <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
-                      data-bs-target="#eliminar" @click="eliminar(p.name)">
+                      data-bs-target="#eliminar" @click="eliminar(p)">
                         <i class="bi bi-trash"></i>
                       </button>
                     </div>
@@ -226,8 +226,9 @@ export default {
       this.product="";
       this.edit_product="";
     },
-    eliminar(name){
-             this.nameborrar=name;
+    eliminar(p){
+             this.nameborrar=p.name;
+             this.idelete=p.id
              console.log('a borra' + this.produlete);
     },
 
