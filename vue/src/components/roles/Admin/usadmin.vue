@@ -36,7 +36,7 @@
                         <td>
                         <td> 
                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#editemployee" @click="edit_user(p)">
+                                data-bs-target="#editemployee" @click="edit_user(u)">
                                 <i class="bi bi-pencil-fill"></i>
                             </button>
                         </td>
@@ -97,21 +97,21 @@
                     <form>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label text-black">Name:</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employee.name">
+                            <input type="text" class="form-control" id="recipient-name" v-model="employee_edit.name">
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label text-black">Email:</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employee.email">
+                            <input type="text" class="form-control" id="recipient-name" v-model="employee_edit.email">
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label text-black">Password:</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employee.password">
+                            <input type="text" class="form-control" id="recipient-name" v-model="employee_edit.password">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="new_user">Edit</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="update_user">Edit</button>
                 </div>
             </div>
         </div>
@@ -160,14 +160,7 @@ export default {
                 image:"",
             },
             emplodel:"",
-            employee_edit: {
-                name: "",
-                email: "",
-                password: "",
-                // password_confirmation: "",
-                token: null,
-                
-            },
+            employee_edit: {},
             role: ['ajam', ' Client', ' Employee', ' Administrator']
         };
     },
@@ -202,11 +195,11 @@ export default {
             // console.log(this.articles_edit);
         },
         async update_user() {
-            let id = this.user_edit.id;
+            let id = this.employee_edit.id;
             console.log(this.user_edit);
             console.log("Id: " + id);
 
-            await this.axios.put("/api/users/" + id, this.user_edit);
+            await this.axios.put("/api/users/" + id, this.employee_edit);
             this.get_users()
             this.user_edit = "";
         },
