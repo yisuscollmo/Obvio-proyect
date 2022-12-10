@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>image</th>
+                        <th></th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Rol</th>
@@ -27,7 +27,7 @@
                         <td></td>
                         <td>
                             <figure class="figure">
-                                <img :src="u.image" class="figure-img img-fluid">
+                                <img :src="axios.defaults.baseURL + u.image" class="figure-img img-fluid">
                             </figure>
                         </td>
                         <td>{{ u.name }}</td>

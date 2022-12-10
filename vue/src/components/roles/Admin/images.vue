@@ -9,7 +9,7 @@
   
       <div class="d-grid gap-2">
         <figure v-if="imagenminiatura!=null">
-                <img :src="axios.defaults.baseURL +imagen" id="imagenminiatura" alt="">
+                <img :src="imagen" id="imagenminiatura" alt="">
           </figure>
         <br>
         <button class="btn btn-success" type="button" @click="new_image">Subir imagen</button>
@@ -23,7 +23,7 @@
         <article class="article-image" v-for="i in images_list_mostrar">
           <figure>
             <h1 id="neimage">{{ i.name }}</h1>
-            <img :src="i.image" alt="">
+            <img :src="axios.defaults.baseURL + i.image" alt="">
           </figure>
 
         </article>

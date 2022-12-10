@@ -15,29 +15,30 @@
             <router-link to="/Ventas" type="button" id="boton" class="btn btn-outline-success link"><i
                     class="bi bi-stack"></i>
             </router-link>
-            <router-link  to="images" type="button" id="boton" class="btn btn-outline-success link">
+            <router-link to="images" type="button" id="boton" class="btn btn-outline-success link">
                 <i class="bi bi-file-image-fill"></i>
             </router-link>
-           
-           
+
+
 
         </div>
 
         <!-- perfil -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="perfiladmin" aria-labelledby="offcanvasRightLabel">
-          
+
             <div id="user_data">
-                    <h1> My Profile</h1>
-                    <h2>{{role[user.roles_id]}}</h2>
-                    <img :src="user.image" alt="" style="width: 20rem; height: 20rem; border-radius: 100%; align-items: center;">
-                    <p>Name: {{user.name}}</p>
-                    <p>Email: {{user.email}}</p>
-                    <p>created_at: {{ user.created_at }}</p>
-                   
-                    <button @click="logout()" class="btn btn-success ">Logout</button>
-                </div>
+                <h1> My Profile</h1>
+                <h2>{{ role[user.roles_id] }}</h2>
+                <img :src="axios.defaults.baseURL + user.image" alt=""
+                    style="width: 20rem; height: 20rem; border-radius: 100%; align-items: center;">
+                <p>Name: {{ user.name }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>created_at: {{ user.created_at }}</p>
+
+                <button @click="logout()" class="btn btn-success ">Logout</button>
+            </div>
         </div>
-      
+
 
         <main>
 
@@ -69,9 +70,9 @@ export default {
         if (localStorage.token) {
             this.token = localStorage.token;
             this.user = JSON.parse(localStorage.user);
-            console.log("Admin rol: "+ this.user.roles_id);
+            console.log("Admin rol: " + this.user.roles_id);
             if (this.user.roles_id === 3) {
-                
+
                 this.token = localStorage.token;
                 this.user = JSON.parse(localStorage.user);
                 // this.token = localStorage.token;

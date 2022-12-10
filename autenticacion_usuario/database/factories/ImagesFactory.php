@@ -16,7 +16,7 @@ class ImagesFactory extends Factory
         return [
 
             'name' => $this->faker->name(''),
-            'image' => "https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png",
+            'image' => "/storage/app/public/homeges/default.jpg",
             //
         ];
     }

@@ -111,7 +111,7 @@ class images extends Controller
 
         } else {
 
-            return 'https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg';
+            return '/storage/app/public/homeges/default.jpg';
         }
     }
 }
