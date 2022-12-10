@@ -46,6 +46,7 @@
    height: max-content;
    padding: 1rem;
    margin-top: 1rem;
+   backdrop-filter: blur(5px);
    border-radius: 1rem;
    background-color: rgba(0, 0, 0, 0.432);
    /* justify-content: center; */
