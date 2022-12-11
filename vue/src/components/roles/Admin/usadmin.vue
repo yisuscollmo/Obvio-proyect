@@ -1,5 +1,5 @@
 <template>
-     <div id="usadmin">
+    <div id="usadmin">
         <div id="filtro">
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search"
@@ -34,13 +34,13 @@
                         <td>{{ u.email }}</td>
                         <td>{{ u.roles_id }}</td>
                         <td>
-                        <td> 
+                        <td>
                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                 data-bs-target="#editemployee" @click="edit_user(u)">
                                 <i class="bi bi-pencil-fill"></i>
                             </button>
                         </td>
-                        <td> 
+                        <td>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#delemployee" @click="eliminar(u)">
                                 <i class="bi bi-trash"></i>
@@ -52,13 +52,13 @@
             </table>
         </div>
     </div>
-  
-     <!-- Modal-crear -->
-     <div class="modal fade" id="employee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <!-- Modal-crear -->
+    <div class="modal fade" id="employee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel" >Create New Employee</h1>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Create New Employee</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -79,7 +79,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="new_user">Create</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                        @click="new_user">Create</button>
                 </div>
             </div>
         </div>
@@ -90,7 +91,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel" >Edit Employee</h1>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Edit Employee</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -105,13 +106,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label text-black">Password:</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employee_edit.password">
+                            <input type="text" class="form-control" id="recipient-name"
+                                v-model="employee_edit.password">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="update_user">Edit</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                        @click="update_user">Edit</button>
                 </div>
             </div>
         </div>
@@ -122,15 +125,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">{{emplodel}}</h1>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">{{ emplodel }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                   <h3>seguro de eliminar este Employee?</h3>
+                    <h3>seguro de eliminar este Employee?</h3>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="delete_user">Delete</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                        @click="delete_user">Delete</button>
                 </div>
             </div>
         </div>
@@ -146,10 +150,10 @@ export default {
     data() {
         return {
             users_list: [],
-           
+
             users_list_mostrar: [],
             search: "",
-            idelete:"",
+            idelete: "",
             employee: {
                 name: "",
                 email: "",
@@ -157,9 +161,9 @@ export default {
                 // password_confirmation: "",
                 token: null,
                 roles_id: "",
-                image:"",
+                image: "",
             },
-            emplodel:"",
+            emplodel: "",
             employee_edit: {},
             role: ['ajam', ' Client', ' Employee', ' Administrator']
         };
@@ -175,11 +179,11 @@ export default {
             let response = await this.axios.get("/api/users");
             this.users_list = response.data;
             this.users_list_mostrar = this.users_list;
-            this.users_list_mostrar.forEach(element => {
-                console.log(element);
+            // this.users_list_mostrar.forEach(element => {
+            //     console.log(element);
 
-            });
-            this.filtrar_employees();
+            // });
+          
         },
         async new_user() {
 
@@ -203,41 +207,42 @@ export default {
             this.get_users()
             this.user_edit = "";
         },
-        eliminar(u){
-             this.emplodel=u.name;
+        eliminar(u) {
+            this.emplodel = u.name;
             this.idelete = u.id;
-             console.log('a borra: ' + this.idelete );
+            console.log('a borra: ' + this.idelete);
         },
         async delete_user() {
 
-            let id=this.idelete;
+            let id = this.idelete;
             console.log(id);
             if (confirm('seguro de eliminar producto')) {
                 await this.axios.delete('/api/users/' + id);
                 // console.log('se borro(?)');
                 this.get_users();
-                this.produlete=null
+                this.produlete = null
             }
         },
-        filtrar_employees() {
-            this.search=2;
-            this.users_list_mostrar = this.users_list.filter(
-                (p) =>
+        // filtrar_employees() {
+        //     this.search = 2;
+        //     this.users_list_mostrar = this.users_list.filter(
+        //         (p) =>
 
-                    (p.roles_id.toString().indexOf(this.search.toString()) > -1)
+        //             (p.roles_id.toString().indexOf(this.search.toString()) > -1)
 
-            );
-            this.search="";
-        },
+        //     );
+        //     this.search = "";
+        // },
+
         filtrar() {
-            
             this.users_list_mostrar = this.users_list.filter(
                 (p) =>
-                    (p.name.toString().indexOf(this.search.toString()) > -1)
-                    (p.roles_id.toString().indexOf(this.search.toString()) > -1)
-
+                    (p.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1) ||
+                    (p.roles_id.toString().toLowerCase().toString().indexOf(this.search.toLowerCase()) > -1)
             );
+        
         },
+    
 
     },
 

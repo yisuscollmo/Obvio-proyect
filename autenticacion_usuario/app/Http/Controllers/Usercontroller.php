@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cr;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class Usercontroller extends Controller
@@ -17,7 +18,15 @@ class Usercontroller extends Controller
     public function index()
     {
 
-        $user = User::all();
+        $user = DB::select(
+            'SELECT USERS.*
+            FROM users
+            WHERE roles_id=2
+            '
+        );
+
+
+        // $user = User::all();
         return response()->json($user);
         //
     }

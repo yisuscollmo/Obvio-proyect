@@ -45,7 +45,7 @@
    width: 25rem;
    height: max-content;
    padding: 1rem;
-   margin-top: 1rem;
+   margin-top: 2rem;
    backdrop-filter: blur(5px);
    border-radius: 1rem;
    background-color: rgba(0, 0, 0, 0.432);
