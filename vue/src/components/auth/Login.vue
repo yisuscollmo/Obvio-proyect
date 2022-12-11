@@ -78,24 +78,31 @@ export default {
                 localStorage.token = rs.data.token;
                 localStorage.user = JSON.stringify(rs.data.user);
                 this.user = localStorage.user;
+                localStorage.role=JSON.stringify(rs.data.user.roles_id);
                 this.role = JSON.stringify(rs.data.user.roles_id);
                 console.log('role: ' + this.role);
 
-                    if(this.role==3){
+                    if(this.role!=null){
                         console.log('entramos(?) 3 if XD');
-                        this.$router.push('/admin');
+                        this.$router.push('/account');
                         console.log('y olei');
                     }
-                    if(this.role==2){
-                        console.log('entramos(?) 2 if XD');
-                        this.$router.push({
-                            name: "Employee",
-                        });
-                    }
-                    if(this.role==1){
-                        console.log('entramos(?) 1 if XD');
-                        this.$router.push('/client');
-                    }
+
+                    // if(this.role==3){
+                    //     console.log('entramos(?) 3 if XD');
+                    //     this.$router.push('/admin');
+                    //     console.log('y olei');
+                    // }
+                    // if(this.role==2){
+                    //     console.log('entramos(?) 2 if XD');
+                    //     this.$router.push({
+                    //         name: "Employee",
+                    //     });
+                    // }
+                    // if(this.role==1){
+                    //     console.log('entramos(?) 1 if XD');
+                    //     this.$router.push('/client');
+                    // }
                     else{
                         this.$router.push({
                             name: "Login",

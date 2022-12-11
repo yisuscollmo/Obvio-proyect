@@ -9,7 +9,7 @@ import Resetpassword from "./components/auth/Resetpassword.vue";
 import NavBar from "./components/NavBar.vue";
 import NavBar2 from "./components/NavBar2.vue";
 import admin from "./components/roles/Admin/admin.vue";
-import Ventas from "./components/ventas.vue";
+import Ventas from "./components/roles/Admin/ventas.vue";
 import Products from "./components/roles/Admin/Products.vue";
 import client from "./components/roles/Client/client.vue";
 import usadmin from "./components/roles/Admin/usadmin.vue";

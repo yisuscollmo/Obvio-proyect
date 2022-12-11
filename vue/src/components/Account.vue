@@ -22,84 +22,91 @@ export default {
     },
     mounted() {
 
-        // console.log("abrio XD");
-        // if (localStorage.token) {
-        //     // this.user = localStorage.user;
-        //     this.token = localStorage.token;
-        //     // this.get_user();
-        //     this.role = this.user.roles_id
-        //     console.log("user: " + this.role)
-           
-
-
-        // } else {
-        //     this.$router.push({
-        //         name: "Login",
-        //         params: {
-        //             message: "No estas autorizado para acceder a esta cuenta account"
-        //         },
-        //     })
-        // }
-    //      switch (this.role) {
-
-    //             case 3:
-    //                 this.$router.push({
-    //                     name: "admin",
-    //                 });
-    //                 break;
-    //             case 2:
-    //                 this.$router.push({
-    //                     name: "Employee",
-    //                 });
-    //                 break;
-    //             case 1:
-    //                 this.$router.push({
-    //                     name: "client",
-    //                 });
-    //                 break;
-
-    //             default:
-    //                 this.$router.push({
-    //                     name: "Login",
-    //                     params: {
-    //                         message:
-    //                             "Ups! algo salión mal, por favor intentalo de nuevo.",
-    //                     },
-    //                 });
-    //         }
+        this.token=localStorage.token;
+        this.role=localStorage.role;
+    
+        if(this.role==3){
+                        console.log('entramos(?) 3 if XD');
+                        this.$router.push('/admin');
+                        console.log('y olei');
+                    }
+                    else if(this.role==2){
+                        console.log('entramos(?) 2 if XD');
+                        this.$router.push({
+                            name: "Employee",
+                        });
+                    }
+                    else if(this.role==1){
+                        console.log('entramos(?) 1 if XD');
+                        this.$router.push('/client');
+                    }
+                    else{
+                        this.$router.push({
+                            name: "Login",
+                            params: {
+                                message:
+                                    "Ups! algo salión mal, por favor intentalo de nuevo. Account",
+                            },
+                        });
+                    }
 
     },
 
 
     methods: {
-        async get_user() {
-            try {
-                const rs = await this.axios.get('/api/user', {
-                    headers: { Authorization: `Bearer ${this.token}` }
-                });
+        // async get_user() {
+        //     try {
+        //         const rs = await this.axios.get('/api/user', {
+        //             headers: { Authorization: `Bearer ${this.token}`}
+        //         });
 
-                this.user = rs.data.user
+        //         this.user = JSON.strngify(rs.data.user);
 
-                this.role = rs.data.user.role_id
-                console.log('user: ' + this.user);
+        //         this.role = JSON.strngify(rs.data.user.role_id);
+        //         console.log('user: ' + this.user);
 
-                console.log('rol: ' + this.role);
+        //         console.log('rol: ' + this.role);
+
+        //           if(this.role==3){
+        //                 console.log('entramos(?) 3 if XD');
+        //                 this.$router.push('/admin');
+        //                 console.log('y olei');
+        //             }
+        //             else if(this.role==2){
+        //                 console.log('entramos(?) 2 if XD');
+        //                 this.$router.push({
+        //                     name: "Employee",
+        //                 });
+        //             }
+        //             else if(this.role==1){
+        //                 console.log('entramos(?) 1 if XD');
+        //                 this.$router.push('/client');
+        //             }
+        //             else{
+        //                 this.$router.push({
+        //                     name: "Login",
+        //                     params: {
+        //                         message:
+        //                             "Ups! algo salión mal, por favor intentalo de nuevo.",
+        //                     },
+        //                 });
+        //             }
 
 
-            } catch (e) {
-                this.$router.push({
-                    name: "Login",
-                    params: {
-                        message:
-                            "no estas autorizado para aceder a esta cuenta get user."
-                    },
+        //     } catch (e) {
+        //         this.$router.push({
+        //             name: "Login",
+        //             params: {
+        //                 message:
+        //                     "no estas autorizado para aceder a esta cuenta get user."
+        //             },
 
-                });
+        //         });
 
-            }
+        //     }
 
 
-        },
+        // },
         async logout() {
             try {
                 const rs = await this.axios.get("/api/logout", {

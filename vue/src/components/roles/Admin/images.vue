@@ -63,6 +63,7 @@
   flex-wrap: wrap;
   width: 100%;
   height: max-content;
+  justify-content: center;
 }
 
 .article-image {
