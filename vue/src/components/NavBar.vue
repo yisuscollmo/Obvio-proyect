@@ -12,10 +12,9 @@
           <router-link to="/login" type="button" id="ini" class="btn btn-outline-success link">LOG IN</router-link>
           <router-link to="/register" type="button" id="ini" class="btn btn-outline-success link">REGISTER
           </router-link>
-          <router-link to="/admin" type="button" id="ini" class="btn btn-outline-success link">ADMIN </router-link>
-          <router-link to="/client" type="button" id="ini" class="btn btn-outline-success link">CLIENT </router-link>
-          <router-link to="/employee" type="button" id="ini" class="btn btn-outline-success link">EMPLOYEE
-          </router-link>
+          <!-- <router-link to="/Resetpassword" type="button" id="ini" class="btn btn-outline-success link">RESET</router-link> -->
+          <!-- <router-link to="/client" type="button" id="ini" class="btn btn-outline-success link">CLIENT </router-link>
+          <router-link to="/employee" type="button" id="ini" class="btn btn-outline-success link">EMPLOYEE</router-link> -->
         </div>
 
       </div>

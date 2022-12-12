@@ -3,14 +3,7 @@
     
     <div id="client_buys">
       <div id="container_buys">
-        <!-- <article v-for="s in buys_list_show">
-          <p>Date: {{s.date}}</p>
-          <p>invoice number: {{s.invoice_number}}</p>
-          <p>User: {{s.users_id}}</p>
-          <p>Article: {{s.articles_id}}</p>
-          <p>State: {{s.state}}</p>
-          <p>Total: {{s.total}}</p>
-        </article> -->
+      
         <table class="table table-hover">
                 <thead>
                     <tr>
@@ -70,7 +63,7 @@
     },
     methods: {
       async get_buys() {
-        let response = await this.axios.get("/api/sales");
+        let response = await this.axios.get("/api/sales/");
         this.buys_list = response.data;
   
         this.buys_list_show = this.buys_list;

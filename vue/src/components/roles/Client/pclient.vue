@@ -15,11 +15,13 @@
    
     <div id="articulos">
        <!-- card -->
-      <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar"  >
+      <div class="card mb-3" style="max-width: 540px;" 
+      v-for="p in product_list_mostrar"  :key="'pro' + p.code"
+      :class="{ selected: p.selected }" @click="insertar(p)" >
         <div class="row g-0">
 
           <figure class="figure">
-            <img :src="p.image" class="figure-img img-fluid rounded">
+            <img :src="axios.defaults.baseurl + p.image" class="figure-img img-fluid rounded">
           </figure>
 
           <div class="col-md-7">
@@ -52,26 +54,27 @@
         <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">id</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">Handle</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr v-for="item in factura" :key="'item' + item.id">
       <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{{item.id}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.amount}}</td>
+      <td>{{item.total}}</td>
+      <td>{{item.iva}}</td>
     </tr>
   
   </tbody>
 </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Send message</button>
+        <button type="button" class="btn btn-success">Comprar</button>
       </div>
     </div>
   </div>
@@ -96,7 +99,10 @@ export default {
         selling_price: "",
         categories_id: "",
         active: "",
-        image:'1'
+        image:'1',
+          //factura//
+        factura: [],
+        
       },
       product_edit: {},
       idelete:"",
@@ -155,6 +161,28 @@ export default {
 
       );
     },
+
+    //factura//
+       insertar(p){
+        this.factura+=p
+       },
+
+      eliminar(id_buscar) {
+         this.item_factura.forEach((item, index) => {
+            if (item.id == id_buscar) {
+               //Restamos los valores anteriores de la factura
+               this.factura.total -= item.total;
+               this.factura.subtotal -= item.subtotal;
+               this.factura.iva -= item.iva;
+
+               this.item_factura.splice(index, 1);
+            }
+         });
+
+         let item = this.mostrar_productos.find((pro) => pro.id == id_buscar);
+         item.selected = false;
+      },
+
   },
 };
 </script>

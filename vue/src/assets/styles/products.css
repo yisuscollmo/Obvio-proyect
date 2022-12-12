@@ -117,3 +117,7 @@
  label{
   color: black;
  }
+ .selected {
+  border: 2px solid #44c6b7;
+  opacity: 1 !important;
+}

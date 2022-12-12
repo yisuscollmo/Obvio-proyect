@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\sales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
@@ -15,6 +16,12 @@ class SalesController extends Controller
     public function index()
     {
         $sales=sales::all();
+        // $sales = DB::select(
+        //     'SELECT sales.*
+        //     FROM sales
+        //     WHERE users_id=$id
+        //     '
+        // );
         return response()->json($sales);
         //
     }
