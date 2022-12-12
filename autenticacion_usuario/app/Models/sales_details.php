@@ -11,7 +11,7 @@ class sales_details extends Model
     protected $fillable = [
         'articles_id',
         'sales_id',
-        'users_id',
+        // 'users_id',
         'amount',
         'price',
         'subtotal',

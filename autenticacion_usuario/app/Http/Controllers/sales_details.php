@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\sales;
-
+use App\Models\cr;
+use App\Models\sales_details as ModelsSales_details;
+// use App\Models\sales_details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SalesController extends Controller
+class sales_details extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-     
+       
+
         //
     }
 
@@ -44,31 +46,31 @@ class SalesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        // return response('entramos');
-        $sales=sales::all();
-        $sales = DB::select(
-            "SELECT sales.*
-            FROM sales
-            WHERE users_id='$id'
+
+        $sales_details=ModelsSales_details::all();
+        $sales_details = DB::select(
+            "SELECT sales_details.*, articles.name 
+            FROM sales_details, articles
+            WHERE sales_id='$id'
+            AND articles_id=articles.id
             "
         );
-        return response()->json($sales);
-
+        return response()->json($sales_details);
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function edit(sales $sales)
+    public function edit(cr $cr)
     {
         //
     }
@@ -77,10 +79,10 @@ class SalesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sales $sales)
+    public function update(Request $request, cr $cr)
     {
         //
     }
@@ -88,12 +90,11 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sales $sales)
+    public function destroy(cr $cr)
     {
         //
     }
- 
 }

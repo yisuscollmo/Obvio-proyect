@@ -55,7 +55,8 @@ export default {
             token: null,
             user: {},
             user_edit: {},
-            role: ['ajam', ' Client', ' Employee', ' Admin']
+            role: ['ajam', ' Client', ' Employee', ' Admin'],
+            edit_user:{}
         };
 
     },
@@ -119,6 +120,10 @@ export default {
                     },
                 });
             }
+        },
+        async user_edit(){
+
+            let response = await this.axios.put("/api/users/", this.edit_user +id); 
         },
     },
 };

@@ -6,8 +6,9 @@
           @keyup="filtrar()" id="busca">
       </form>
       <!-- Button trigger modal crear -->
-      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#carrito" id="crea">
-        <i class="bi bi-cart-fill" id="mas" ></i>
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#carrito"
+       id="crea" >
+        <i class="bi bi-cart-fill" id="mas" @click="get_details(11)"></i>
         <span style="position: absolute; bottom:-0.3rem; color:black;" >{{total}}</span>
       </button>
 
@@ -61,13 +62,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="item in factura" :key="'item' + item.id">
-      <th scope="row">1</th>
-      <td>{{item.id}}</td>
-      <td>{{item.price}}</td>
-      <td>{{item.amount}}</td>
-      <td>{{item.total}}</td>
-      <td>{{item.iva}}</td>
+    <tr v-for="d in sales_details" :key="'item' + item.id">
+      <th scope="row">{{d.name}}</th>
+     
     </tr>
   
   </tbody>
@@ -100,8 +97,9 @@ export default {
         categories_id: "",
         active: "",
         image:'1',
+
           //factura//
-        factura: [],
+        sales_details:[],
         
       },
       product_edit: {},
@@ -164,7 +162,7 @@ export default {
 
     //factura//
        insertar(p){
-        this.factura+=p
+       
        },
 
       eliminar(id_buscar) {
@@ -182,6 +180,11 @@ export default {
          let item = this.mostrar_productos.find((pro) => pro.id == id_buscar);
          item.selected = false;
       },
+      async get_details(id){
+      let response = await this.axios.get("/api/sales_details/" + id);
+      this.sales_details=response.data;
+      // console.log('articles: '+this.sales_details);
+    },
 
   },
 };

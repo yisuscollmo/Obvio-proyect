@@ -15,9 +15,9 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('articles_id')->constrained();
+            // $table->foreignId('articles_id')->constrained();
             $table->foreignId('users_id')->constrained();
-            // $table->foreignId('sales_id')->constrained();
+         
             $table->date('date');
             $table->bigInteger('sales_number');
             $table->string('state');

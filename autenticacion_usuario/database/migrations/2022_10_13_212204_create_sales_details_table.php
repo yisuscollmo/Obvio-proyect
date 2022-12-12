@@ -17,7 +17,7 @@ class CreateSalesDetailsTable extends Migration
             $table->id();
             $table->foreignId('articles_id')->constrained();
             $table->foreignId('sales_id')->constrained();
-            $table->foreignId('users_id')->constrained();
+            // $table->foreignId('users_id')->constrained();
             $table->integer('amount');
             $table->bigInteger('price');
             $table->bigInteger('subtotal');

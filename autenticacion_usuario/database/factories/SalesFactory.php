@@ -16,7 +16,7 @@ class SalesFactory extends Factory
         return [
 
 
-            'articles_id' => $this->faker->numberBetween(1, 100),
+            // 'articles_id' => $this->faker->numberBetween(1, 100),
             'users_id' => $this->faker->numberBetween(1, 10),
             // 'sales_id' => $this->faker->numberBetween(1, 10),
             'sales_number' => $this->faker->numberBetween(0, 1000000),
