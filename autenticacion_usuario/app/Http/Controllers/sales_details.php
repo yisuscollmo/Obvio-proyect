@@ -52,7 +52,7 @@ class sales_details extends Controller
     public function show($id)
     {
 
-        $sales_details=ModelsSales_details::all();
+        // $sales_details=ModelsSales_details::all();
         $sales_details = DB::select(
             "SELECT sales_details.*, articles.name 
             FROM sales_details, articles

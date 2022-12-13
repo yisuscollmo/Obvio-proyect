@@ -121,3 +121,34 @@
   border: 2px solid #44c6b7;
   opacity: 1 !important;
 }
+#contmore{
+  display: flex;
+  flex-direction: row;
+  width: 6rem;
+  /* border: 1px solid red; */
+}
+.more{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid black;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 1rem;
+  background-color: #169e7c;
+  color: #ffffff;
+  font-size: x-large;
+}
+.amount{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid black;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  font-size: large;
+}

@@ -17,7 +17,7 @@
     <div id="articulos">
       <!-- card -->
       <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar" :key="'pro' + p.code"
-        :class="{ selected: p.selected }" @click="insertar(p)">
+        :class="{ selected: p.selected }" @click="insertar(p.id)">
         <div class="row g-0">
 
           <figure class="figure">
@@ -65,17 +65,25 @@
               <tr v-for="d in sales_details">
                 <td scope="row">{{ d.name }}</td>
                 <td scope="row">
-                  <span>-</span>{{ d.amount }}
-                  <span>+</span>
+                  <div id="contmore">
+                    <span class="more" @click="d.amount--">
+                      <b @click="put_sale()">-</b></span>
+                    <span class="amount" >
+                      {{ d.amount }}
+                    </span>
+                    <span class="more" @click="d.amount++">
+                      <b @click="put_sale()">+</b></span>
+                  </div>
+
                 </td>
-                <td scope="row">{{ d.total }}</td>
+                <td scope="row">{{ d.amount * d.total }}</td>
               </tr>
 
             </tbody>
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success">Comprar</button>
+          <button type="button" class="btn btn-success">Comprar {{ total }}</button>
         </div>
       </div>
     </div>
@@ -103,12 +111,15 @@ export default {
         image: '1',
 
         //factura//
-        sales_details: [],
+        
 
       },
+      sales_details: [
+
+      ],
       product_edit: {},
       idelete: "",
-      total: "Total XD",
+      total: "100000",
     };
   },
   mounted() {
@@ -165,17 +176,26 @@ export default {
     },
 
     //factura//
-    insertar(p) {
+    insertar(id) {
 
+    },
+    more() {
+
+    },
+    less() {
+     
+    },
+    async put_sale() {
+      console.log('put_sale');
     },
 
     eliminar(id_buscar) {
-      
 
-  
+
+
     },
     async get_details(id) {
-      console.log('alguna monda');
+      // console.log('alguna monda');
       let response = await this.axios.get("/api/sales_details/" + id);
       this.sales_details = response.data;
       // console.log('articles: '+this.sales_details);
