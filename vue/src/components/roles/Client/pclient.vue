@@ -6,19 +6,18 @@
           @keyup="filtrar()" id="busca">
       </form>
       <!-- Button trigger modal crear -->
-      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#carrito"
-       id="crea" >
-        <i class="bi bi-cart-fill" id="mas" @click="get_details(11)"></i>
-        <span style="position: absolute; bottom:-0.3rem; color:black;" >{{total}}</span>
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#carrito" id="crea"
+        @click="get_details(11)">
+        <i class="bi bi-cart-fill" id="mas"></i>
+        <span style="position: absolute; bottom:-0.3rem; color:black;">{{ total }}</span>
       </button>
 
     </div>
-   
+
     <div id="articulos">
-       <!-- card -->
-      <div class="card mb-3" style="max-width: 540px;" 
-      v-for="p in product_list_mostrar"  :key="'pro' + p.code"
-      :class="{ selected: p.selected }" @click="insertar(p)" >
+      <!-- card -->
+      <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar" :key="'pro' + p.code"
+        :class="{ selected: p.selected }" @click="insertar(p)">
         <div class="row g-0">
 
           <figure class="figure">
@@ -34,49 +33,54 @@
               <h5 class="card-title" style="text-align: center;">{{ p.name }}</h5>
               <small>{{ p.description }}</small>
               <h5>{{ p.selling_price }}</h5>
-          
+
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- carrito modal -->
+  <div class="modal fade modal-dialog-scrollable" id="carrito" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Amount</th>
+                <th scope="col">price</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="d in sales_details">
+                <td scope="row">{{ d.name }}</td>
+                <td scope="row">
+                  <span>-</span>{{ d.amount }}
+                  <span>+</span>
+                </td>
+                <td scope="row">{{ d.total }}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success">Comprar</button>
         </div>
       </div>
     </div>
   </div>
- 
 
-  <!-- carrito modal -->
-<div class="modal fade modal-dialog-scrollable" id="carrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="d in sales_details" :key="'item' + item.id">
-      <th scope="row">{{d.name}}</th>
-     
-    </tr>
-  
-  </tbody>
-</table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success">Comprar</button>
-      </div>
-    </div>
-  </div>
-</div>
-  
 
 </template>
 <script>
@@ -96,15 +100,15 @@ export default {
         selling_price: "",
         categories_id: "",
         active: "",
-        image:'1',
+        image: '1',
 
-          //factura//
-        sales_details:[],
-        
+        //factura//
+        sales_details: [],
+
       },
       product_edit: {},
-      idelete:"",
-      total:"Total XD",
+      idelete: "",
+      total: "Total XD",
     };
   },
   mounted() {
@@ -129,16 +133,16 @@ export default {
     async update_products() {
       let id = this.product_edit.id;
       let response = await this.axios.put("/api/articles/" + id, this.product_edit)
-      .then(this.close());
+        .then(this.close());
       this.get_products();
     },
-    close(){
-      this.product="";
-      this.edit_product="";
+    close() {
+      this.product = "";
+      this.edit_product = "";
     },
-    eliminar(name){
-             this.nameborrar=name;
-             console.log('a borra' + this.produlete);
+    eliminar(name) {
+      this.nameborrar = name;
+      console.log('a borra' + this.produlete);
     },
 
     async delete_product(p) {
@@ -161,28 +165,19 @@ export default {
     },
 
     //factura//
-       insertar(p){
-       
-       },
+    insertar(p) {
 
-      eliminar(id_buscar) {
-         this.item_factura.forEach((item, index) => {
-            if (item.id == id_buscar) {
-               //Restamos los valores anteriores de la factura
-               this.factura.total -= item.total;
-               this.factura.subtotal -= item.subtotal;
-               this.factura.iva -= item.iva;
+    },
 
-               this.item_factura.splice(index, 1);
-            }
-         });
+    eliminar(id_buscar) {
+      
 
-         let item = this.mostrar_productos.find((pro) => pro.id == id_buscar);
-         item.selected = false;
-      },
-      async get_details(id){
+  
+    },
+    async get_details(id) {
+      console.log('alguna monda');
       let response = await this.axios.get("/api/sales_details/" + id);
-      this.sales_details=response.data;
+      this.sales_details = response.data;
       // console.log('articles: '+this.sales_details);
     },
 
