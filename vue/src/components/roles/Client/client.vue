@@ -54,7 +54,7 @@ export default {
         return {
             token: null,
             user: {},
-            user_edit: {},
+            editing:false,
             role: ['ajam', ' Client', ' Employee', ' Admin'],
             edit_user:{}
         };

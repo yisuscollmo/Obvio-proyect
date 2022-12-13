@@ -67,6 +67,7 @@ export default {
                 
                 this.token = localStorage.token;
                 this.user = JSON.parse(localStorage.user);
+                this.$router.push("/Eproducts")
                 // this.token = localStorage.token;
                 // this.get_user();
             } else {

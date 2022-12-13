@@ -61,6 +61,29 @@ label {
 input{
    width: 100%;
 }
+.btn-outline-success {
+    color: none !important;
+    border-color: none !important;
+}
+.btn-outline-success {
+    color: none !important;
+    border-color: none !important;
+}
+
+.btn-outline-success.focus,
+.btn-outline-success:focus {
+    box-shadow: none !important;
+}
+#enviar {
+    width: max-content;
+    height: max-content;
+    font-size: 1.8rem;
+    border: 0;
+    font-family: fantasy;
+    color: #ffffff;
+   
+
+}
 </style>
 
 

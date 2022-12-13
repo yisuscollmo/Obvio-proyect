@@ -14,9 +14,10 @@ class SalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-     
+        $sales=sales::all();
+        return response()->json($sales);
         //
     }
 

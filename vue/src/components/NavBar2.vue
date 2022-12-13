@@ -3,7 +3,7 @@
   <nav class="navbar">
 
     <!-- <div id="logo" > <img src="/src\assets\image\logo_claro.png"></div> -->
-    <router-link to="/"  id="logo"><img src="/src\assets\image\logo_claro.png"></router-link>
+    <router-link to="/"  id="logo"><img src="/src\assets\image\logo.jpeg"></router-link>
 
     <router-link to="/" type="button" id="boton" class="btn btn-outline- link"><i
        class="bi bi-house-door-fill"></i></router-link>

@@ -2,7 +2,7 @@
 
   <nav class="navbar">
 
-    <div id="logo"> <img src="/src\assets\image\logo_claro.png"></div>
+    <div id="logo"> <img src="/src\assets\image\logo.jpeg"></div>
 
 
     <div id="conte">
@@ -19,7 +19,7 @@
 
       </div>
       <div id="contee">
-        <router-link to="/account" type="button" id="ini" class="btn btn-outline-success link">account</router-link>
+        <router-link to="/account" type="button" id="ini" class="btn btn-outline-success link"> <i class="bi bi-person-fill"></i></router-link>
       </div>
 
     </div>
@@ -31,6 +31,7 @@
         <router-link to="/" type="button" id="inira" class="btn btn-outline-success link">HOME</router-link>
         <router-link to="/login" type="button" id="inira" class="btn btn-outline-success link">LOG IN</router-link>
         <router-link to="/register" type="button" id="inira" class="btn btn-outline-success link">SIGN IN </router-link>
+         <router-link to="/account" type="button" id="inira" class="btn btn-outline-success link">ACCOUNT</router-link>
       </ul>
     </div>
   </nav>
