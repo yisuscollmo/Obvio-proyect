@@ -15,9 +15,9 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#" @click="get_ventas">todas</a></li>
                         <li><a class="dropdown-item" href="#" @click="filtrando(1)">en proceso</a></li>
-                        <li><a class="dropdown-item" href="#"  @click="filtrando(2)">Terminadas</a></li>
-                        <li><a class="dropdown-item" href="#"  @click="filtrando(3)">Entrega en proceso</a></li>
-                        <li><a class="dropdown-item" href="#"  @click="filtrando(4)">Producto's entregado's</a></li>
+                        <li><a class="dropdown-item" href="#" @click="filtrando(2)">Terminadas</a></li>
+                        <li><a class="dropdown-item" href="#" @click="filtrando(3)">Entrega en proceso</a></li>
+                        <li><a class="dropdown-item" href="#" @click="filtrando(4)">Producto's entregado's</a></li>
                     </ul>
                 </div>
 
@@ -35,6 +35,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Sale number</th>
+                        <th>articles</th>
                         <th scope="col">State</th>
                         <th scope="col">Data</th>
                     </tr>
@@ -42,15 +43,30 @@
                 <tbody v-for="p in ventas_copia">
                     <tr>
                         <td>{{ p.sales_number }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" @click="get_details(p.id)">
+                                    Articles
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li v-for="d in sales_details"><a class="dropdown-item" href="#">{{ d.name }}</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </td>
                         <td>{{ p.state }}</td>
                         <td>{{ p.date }}</td>
                         <div>
                             <td> <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#ediventa">
+                                    data-bs-target="#ediventa" @click="edit_sale(p)">
                                     <i class="bi bi-pencil-fill"></i>
                                 </button></td>
                             <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#eliventa">
+                                    data-bs-target="#eliventa" @click="sale_borrar(p)">
                                     <i class="bi bi-trash"></i>
                                 </button></td>
                         </div>
@@ -64,15 +80,16 @@
     <div class="modal fade" id="eliventa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5>venta</h5>
+                <div class="modal-header text-black">
+                    <h5 >{{borrar}}</h5>
                 </div>
                 <div class="modal-body">
-                    estas seguro de elimar esta venta
+                    Estas seguro de elimar esta venta?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
-                    <button type="button" class="btn btn-danger">eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >cancelar</button>
+                    <button type="button" class="btn btn-danger" @click="delete_sale"
+                        data-bs-dismiss="modal" @auxclick="delete_sale">eliminar</button>
                 </div>
             </div>
         </div>
@@ -82,28 +99,37 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">edit</h1>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Edit Sale</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Sale number:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="recipient-name" class="col-form-label text-black">User:</label>
+                            <input type="text" class="form-control " id="recipient-name" v-model="sale_edit.users_id">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Stat:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="recipient-name" class="col-form-label text-black">Date:</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="sale_edit.date">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Data:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="recipient-name" class="col-form-label text-black">Number Sale</label>
+                            <input type="text" class="form-control" id="recipient-name"
+                                v-model="sale_edit.sales_number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label text-black">State:</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="sale_edit.state">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label text-black">Total:</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="sale_edit.total">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">edit</button>
+                    <button type="button" class="btn btn-success" @click="update_sale">Edit</button>
                 </div>
             </div>
         </div>
@@ -113,28 +139,47 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">create new sale</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel`">create new sale</h1>
+                    <button type="button" class="btn-close text-black" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Sale number:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="recipient-name" class="col-form-label text-black">User:</label>
+                            <input type="text" class="form-control " id="recipient-name" v-model="sale.user_id">
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                               Escoge los articulos a vender
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item" type="button">Action</button></li>
+                             
+                            </ul>
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Stat:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="recipient-name" class="col-form-label text-black">Date:</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="sale.date">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Data:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="recipient-name" class="col-form-label text-black">Number Sale</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="sale.sales_number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label text-black">State:</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="sale.state">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label text-black">Total:</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="sale.total">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">edit</button>
+                    <button type="button" class="btn btn-success" @click="new_sale">Create</button>
                 </div>
             </div>
         </div>
@@ -149,7 +194,20 @@ export default {
     data() {
         return {
             ventas_list: [],
+            sale_detail: {
 
+            },
+            sales_details: [],
+            sale: {
+                users_id: "",
+                date: "",
+                sales_number: "",
+                state: "",
+                total: "",
+            },
+            sale_edit: {},
+            borrar: "",
+            idelete: "",
             ventas_copia: "",
             search: "",
         };
@@ -164,6 +222,31 @@ export default {
             this.ventas_list = response.data;
             this.ventas_copia = this.ventas_list;
         },
+        async new_sale() {
+            console.log('sale:'+ JSON.stringify(this.sale));
+            let response = await this.axios.post("/api/sales/", this.sale);
+            // console.log("response: "+response.data);
+            this.get_ventas();
+        },
+        edit_sale(p) {
+            this.sale_edit = p;
+        },
+        async update_sale() {
+            let id = this.sale_edit.id;
+            let response = await this.axios.put("/api/sales/", this.sale_edit + id);
+        },
+        sale_borrar(p) {
+            this.borrar = p.sales_number;
+            this.idelete = p.id;
+        },
+        async delete_sale() {
+            let id = this.idelete;
+            console.log('id: '+ id)
+            let response = await this.axios.delete("/api/sales/" + id);
+            this.get_ventas();
+        },
+
+
         filtrar() {
             this.ventas_copia = this.ventas_list.filter(
                 (p) =>
@@ -173,14 +256,19 @@ export default {
             );
         },
         filtrando(s) {
-            this.search=s;
+            this.search = s;
             this.ventas_copia = this.ventas_list.filter(
                 (p) =>
-                    
-                    (p.state.toString().indexOf(this.search.toString()) > -1) 
-                    
+
+                    (p.state.toString().indexOf(this.search.toString()) > -1)
+
             );
-            this.search="";
+            this.search = "";
+        },
+        async get_details(id) {
+            let response = await this.axios.get("/api/sales_details/" + id);
+            this.sales_details = response.data;
+            // console.log('articles: '+this.sales_details);
         },
     },
 };

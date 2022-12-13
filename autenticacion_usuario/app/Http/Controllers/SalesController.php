@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\sales;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +38,20 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return response("entramos");
+
+        $new_sale = sales::create([
+            
+            'users_id' => $request->users_id,
+            'date' => $request->date,
+            'sales_number' => $request->sales_number,
+            'state' => $request->state,
+            'total' => $request->total,
+
+        ]);
+        
+        $new_sale->save();
         //
     }
 
@@ -92,8 +105,11 @@ class SalesController extends Controller
      * @param  \App\Models\sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sales $sales)
+    public function destroy($id)
     {
+
+        $sales = sales::find($id);
+        $sales ->delete();
         //
     }
  

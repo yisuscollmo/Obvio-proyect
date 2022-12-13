@@ -207,7 +207,7 @@ export default {
       this.product_list_mostrar = this.product_list;
     },
     async new_product() {
-      console.log(this.product);
+      // console.log(this.product);
       let response = await this.axios.post("/api/articles", this.product);
       this.get_products();
 
