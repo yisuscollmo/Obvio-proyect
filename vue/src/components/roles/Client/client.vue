@@ -29,9 +29,9 @@
                     <img :src="axios.defaults.baseURL +user.image" alt="">
                     <p>Name: {{ user.name }}</p>
                     <p>Email: {{ user.email }}</p>
-                    <p>created_at: {{ user.created_at }}</p>
+                 
 
-                    <button @click="logout()" class="btn btn-success ">Logout</button>
+                    <button @click="logout()" class="btn btn-dark ">Logout</button>
 
                    
                 </div>
