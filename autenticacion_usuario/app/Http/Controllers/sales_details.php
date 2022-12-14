@@ -40,6 +40,19 @@ class sales_details extends Controller
      */
     public function store(Request $request)
     {
+
+        $new_sdetail = sales_details::create([
+           
+            'articles_id' => $request->articles_id,
+            'sales_id' => $request->sales_id,
+            'amount' => $request->amount,
+            'price' => $request->price,
+            'subtotal' => $request->subtotal,
+            'iva' => $request->iva,
+            'total' => $request->total,
+        ]);
+        
+        $new_sdetail->save();
         //
     }
 

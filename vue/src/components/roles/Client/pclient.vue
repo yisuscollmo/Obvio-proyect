@@ -76,7 +76,7 @@
                   </div>
 
                 </td>
-                <td scope="row">{{ d.amount * d.total }}</td>
+                <td scope="row">{{ d.amount * d.price }}</td>
               </tr>
 
             </tbody>
@@ -120,6 +120,16 @@ export default {
         sales_number: "1010100101",
         state: 1,
         total: "",
+
+      },
+      sale_detail:{
+        articles_id:"",
+        sales_id:"",
+        amount:1,
+        price:"",
+        subtotal:"",
+        iva:"",
+        total:"",
 
       },
       carrito: [
@@ -188,9 +198,13 @@ export default {
     async insertar(p) {
       this.sale.users_id = this.user.id;
       this.sale.total = p.selling_price;
-      console.log('sale: ' + JSON.stringify(this.sale));
+      this.sale_detail.articles_id=p.id;
+      // console.log('sale: ' + JSON.stringify(this.sale));
       let response = await this.axios.post("/api/sales/", this.sale);
       console.log('respondio: '+ JSON.stringify(response.data));
+      if(response.data!=null){
+        this.put_article(response.data)
+      }
     },
     more() {
 
@@ -198,9 +212,9 @@ export default {
     less() {
 
     },
-    async put_sale() {
-
-      let response = await this.axios.get("/api/sales_details/");
+    async put_article(id) {
+      this.sale_detail.sales_id=id;
+      let response = await this.axios.post("/api/sales_details/", this.sale_detail);
     },
 
     eliminar(id_buscar) {
@@ -209,7 +223,7 @@ export default {
 
     },
     async get_details(id) {
-      // console.log('alguna monda');
+      console.log('alguna monda');
       let response = await this.axios.get("/api/carrito/" + id);
       this.carrito = response.data;
       // console.log('articles: '+this.sales_details);

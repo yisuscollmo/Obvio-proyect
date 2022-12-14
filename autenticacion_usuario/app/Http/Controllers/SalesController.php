@@ -36,20 +36,22 @@ class SalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,)
     {
         	
         // return response("ja, entramos");
         $consult= DB::select(
             "
-            SELECT sales.sales_number, state
+            SELECT sales_number
             FROM sales
             WHERE sales.state=1
+           
             
             "
         );
-    if($consult!=null){
-        return response($consult);
+       
+    if($consult=null){
+        // return response('aish: '.$consult);
         $new_sale = sales::create([
            
             'users_id' => $request->users_id,
@@ -64,7 +66,15 @@ class SalesController extends Controller
 
     }
     else{
-        return response('ya existe una venta en la carrito');
+
+        $sale_id=DB::select(
+            "
+            SELECT sales.id
+            FROM sales
+            WHERE sales.state=1
+            "
+        );
+        return response($sale_id);
     }
         
         //
