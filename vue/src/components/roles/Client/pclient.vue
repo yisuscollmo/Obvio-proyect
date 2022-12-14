@@ -17,7 +17,7 @@
     <div id="articulos">
       <!-- card -->
       <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar" :key="'pro' + p.code"
-        :class="{ selected: p.selected }" @click="insertar(p.selling_price)">
+        :class="{ selected: p.selected }" @click="insertar(p)">
         <div class="row g-0">
 
           <figure class="figure">
@@ -68,7 +68,7 @@
                   <div id="contmore">
                     <span class="more" @click="d.amount--">
                       <b @click="put_sale()">-</b></span>
-                    <span class="amount" >
+                    <span class="amount">
                       {{ d.amount }}
                     </span>
                     <span class="more" @click="d.amount++">
@@ -112,14 +112,14 @@ export default {
         image: '1',
       },
 
-       //factura//
-      sale:{
+      //factura//
+      sale: {
 
-        users_id:"",
-        date:"2022/12/13",
-        sales_number:"1010100101",
-        state:1,
-        total:"",
+        users_id: "",
+        date: "2022/12/13",
+        sales_number: "1010100101",
+        state: 1,
+        total: "",
 
       },
       sales_details: [
@@ -185,10 +185,10 @@ export default {
     },
 
     //factura//
-   async insertar(p) {
-    this.sale.users_id=this.user.id;
-    this.sale.total=p.selling_price;
-    console.log('sale: ' + JSON.stringify(this.sale ));
+    async insertar(p) {
+      this.sale.users_id = this.user.id;
+      this.sale.total = p.selling_price;
+      console.log('sale: ' + JSON.stringify(this.sale));
       let response = await this.axios.post("/api/sales/", this.sale);
       console.log(response.data);
     },
@@ -196,10 +196,10 @@ export default {
 
     },
     less() {
-     
+
     },
     async put_sale() {
-      
+
       let response = await this.axios.get("/api/sales_details/");
     },
 

@@ -38,9 +38,17 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-
+        	
         // return response("ja, entramos");
-
+        $consult= DB::select(
+            "
+            SELECT Sales.state, sales.sales_number
+            FROM sales
+            WHERE sales.state=1
+            
+            "
+        );
+    if($consult!=null){
         $new_sale = sales::create([
             
             'users_id' => $request->users_id,
@@ -52,6 +60,12 @@ class SalesController extends Controller
         ]);
         
         $new_sale->save();
+
+    }
+    else{
+        return response('ya existe una vemta en la carrito');
+    }
+        
         //
     }
 
