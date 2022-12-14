@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\sales;
+use App\Models\cr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SalesController extends Controller
+class carrito extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,6 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $sales=sales::all();
-        return response()->json($sales);
         //
     }
 
@@ -38,51 +36,39 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-
-        // return response("ja, entramos");
-
-        $new_sale = sales::create([
-            
-            'users_id' => $request->users_id,
-            'date' => $request->date,
-            'sales_number' => $request->sales_number,
-            'state' => $request->state,
-            'total' => $request->total,
-
-        ]);
-        
-        $new_sale->save();
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        // return response('entramos');
-        $sales=sales::all();
-        $sales = DB::select(
-            "SELECT sales.*
-            FROM sales
-            WHERE users_id='$id'
+
+        // $sales_details=ModelsSales_details::all();
+        $sales_details = DB::select(
+            "SELECT sales_details.*, articles.name 
+            FROM sales_details, articles, sales
+            WHERE sales_id='$id'
+            AND articles_id=articles.id
+            AND sales.state=1
+            AND users_id='$id'
             "
         );
-        return response()->json($sales);
-
+        return response()->json($sales_details);
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function edit(sales $sales)
+    public function edit(cr $cr)
     {
         //
     }
@@ -91,10 +77,10 @@ class SalesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sales $sales)
+    public function update(Request $request, cr $cr)
     {
         //
     }
@@ -102,15 +88,11 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\sales  $sales
+     * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(cr $cr)
     {
-
-        $sales = sales::find($id);
-        $sales ->delete();
         //
     }
- 
 }

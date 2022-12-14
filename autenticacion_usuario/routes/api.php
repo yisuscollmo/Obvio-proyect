@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NewPasswordController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\carrito;
 use App\Http\Controllers\images;
 use App\Http\Controllers\sales_details;
 use App\Http\Controllers\SalesController;
@@ -42,4 +43,5 @@ Route::resource('/articles', ArticlesController::class);
 Route::resource('/users', Usercontroller::class);
 Route::resource('/sales', SalesController::class);
 Route::resource('/sales_details', sales_details::class);
+Route::resource('/carrito', carrito::class);
 Route::resource('/images', images::class);

@@ -17,7 +17,7 @@
     <div id="articulos">
       <!-- card -->
       <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar" :key="'pro' + p.code"
-        :class="{ selected: p.selected }" @click="insertar(p.id)">
+        :class="{ selected: p.selected }" @click="insertar(p.selling_price)">
         <div class="row g-0">
 
           <figure class="figure">
@@ -95,6 +95,7 @@
 export default {
   data() {
     return {
+      user: {},
       product_list: [],
       product_list_mostrar: [],
       search: "",
@@ -109,9 +110,16 @@ export default {
         categories_id: "",
         active: "",
         image: '1',
+      },
 
-        //factura//
-        
+       //factura//
+      sale:{
+
+        users_id:"",
+        date:"2022/12/13",
+        sales_number:"1010100101",
+        state:1,
+        total:"",
 
       },
       sales_details: [
@@ -124,6 +132,7 @@ export default {
   },
   mounted() {
     this.get_products();
+    this.user = JSON.parse(localStorage.user);
   },
   methods: {
     async get_products() {
@@ -176,8 +185,12 @@ export default {
     },
 
     //factura//
-    insertar(id) {
-
+   async insertar(p) {
+    this.sale.users_id=this.user.id;
+    this.sale.total=p.selling_price;
+    console.log('sale: ' + JSON.stringify(this.sale ));
+      let response = await this.axios.post("/api/sales/", this.sale);
+      console.log(response.data);
     },
     more() {
 
@@ -186,7 +199,8 @@ export default {
      
     },
     async put_sale() {
-      console.log('put_sale');
+      
+      let response = await this.axios.get("/api/sales_details/");
     },
 
     eliminar(id_buscar) {
@@ -196,7 +210,7 @@ export default {
     },
     async get_details(id) {
       // console.log('alguna monda');
-      let response = await this.axios.get("/api/sales_details/" + id);
+      let response = await this.axios.get("/api/carrito/" + id);
       this.sales_details = response.data;
       // console.log('articles: '+this.sales_details);
     },
