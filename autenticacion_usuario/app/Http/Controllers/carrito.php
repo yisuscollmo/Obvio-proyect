@@ -53,9 +53,10 @@ class carrito extends Controller
             "SELECT sales_details.*, articles.name 
             FROM sales_details, articles, sales
             WHERE sales_id='$id'
-            AND articles_id=articles.id
+            AND articles_id = articles.id
             AND sales.state=1
             AND users_id='$id'
+            -- Group by articles.name
             "
         );
         return response()->json($sales_details);
