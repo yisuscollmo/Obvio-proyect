@@ -62,7 +62,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="d in sales_details">
+              <tr v-for="d in carrito">
                 <td scope="row">{{ d.name }}</td>
                 <td scope="row">
                   <div id="contmore">
@@ -122,7 +122,7 @@ export default {
         total: "",
 
       },
-      sales_details: [
+      carrito: [
 
       ],
       product_edit: {},
@@ -190,7 +190,7 @@ export default {
       this.sale.total = p.selling_price;
       console.log('sale: ' + JSON.stringify(this.sale));
       let response = await this.axios.post("/api/sales/", this.sale);
-      console.log(response.data);
+      console.log('respondio: '+ JSON.stringify(response.data));
     },
     more() {
 
@@ -211,7 +211,7 @@ export default {
     async get_details(id) {
       // console.log('alguna monda');
       let response = await this.axios.get("/api/carrito/" + id);
-      this.sales_details = response.data;
+      this.carrito = response.data;
       // console.log('articles: '+this.sales_details);
     },
 

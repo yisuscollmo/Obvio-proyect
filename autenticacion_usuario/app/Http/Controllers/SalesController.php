@@ -42,18 +42,19 @@ class SalesController extends Controller
         // return response("ja, entramos");
         $consult= DB::select(
             "
-            SELECT Sales.state, sales.sales_number
+            SELECT sales.sales_number, state
             FROM sales
             WHERE sales.state=1
             
             "
         );
     if($consult!=null){
+        return response($consult);
         $new_sale = sales::create([
-            
+           
             'users_id' => $request->users_id,
             'date' => $request->date,
-            'sales_number' => $request->sales_number,
+            'sales_number' => $consult+1,
             'state' => $request->state,
             'total' => $request->total,
 
@@ -63,7 +64,7 @@ class SalesController extends Controller
 
     }
     else{
-        return response('ya existe una vemta en la carrito');
+        return response('ya existe una venta en la carrito');
     }
         
         //
