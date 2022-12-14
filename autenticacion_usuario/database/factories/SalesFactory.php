@@ -17,10 +17,10 @@ class SalesFactory extends Factory
 
 
             // 'articles_id' => $this->faker->numberBetween(1, 100),
-            'users_id' => $this->faker->numberBetween(1, 10),
+            'users_id' => $this->faker->numberBetween(1, 11),
             // 'sales_id' => $this->faker->numberBetween(1, 10),
             'sales_number' => $this->faker->numberBetween(0, 1000000),
-            'state'=>$this->faker->numberBetween(2, 4),
+            'state'=>$this->faker->numberBetween(1, 4),
             'total' => $this->faker->numberBetween(0, 1000000),
             'date' => $this->faker->date()
 

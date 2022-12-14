@@ -17,7 +17,7 @@
     <div id="articulos">
       <!-- card -->
       <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar" :key="'pro' + p.code"
-        :class="{ selected: p.selected }" @click="insertar(p)">
+        :class="{ selected: p.selected }" @click="insert(p)">
         <div class="row g-0">
 
           <figure class="figure">
@@ -195,13 +195,13 @@ export default {
     },
 
     //factura//
-    async insertar(p) {
+    async insert(p) {
       this.sale.users_id = this.user.id;
       this.sale.total = p.selling_price;
       this.sale_detail.articles_id=p.id;
-      // console.log('sale: ' + JSON.stringify(this.sale));
+      console.log('sale: ' + JSON.stringify(this.sale));
       let response = await this.axios.post("/api/sales/", this.sale);
-      console.log('respondio: '+ JSON.stringify(response.data));
+      // console.log('respondio: '+ JSON.stringify(response.data));
       if(response.data!=null){
         this.put_article(response.data)
       }
@@ -213,6 +213,7 @@ export default {
 
     },
     async put_article(id) {
+      console.log('id: '+id);
       this.sale_detail.sales_id=id;
       let response = await this.axios.post("/api/sales_details/", this.sale_detail);
     },

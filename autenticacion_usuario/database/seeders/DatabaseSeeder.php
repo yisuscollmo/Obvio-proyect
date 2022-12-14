@@ -60,8 +60,8 @@ class DatabaseSeeder extends Seeder
         );
       
         detail::factory(10)->create(); 
-        Sales::factory(10)->create();
-        sales_details::factory(10)->create();
+        Sales::factory(100)->create();
+        sales_details::factory(100)->create();
         images::factory(10)->create();
 
     }

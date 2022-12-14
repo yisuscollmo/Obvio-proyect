@@ -45,8 +45,7 @@ class SalesController extends Controller
             SELECT sales_number
             FROM sales
             WHERE sales.state=1
-           
-            
+
             "
         );
        
@@ -56,16 +55,13 @@ class SalesController extends Controller
            
             'users_id' => $request->users_id,
             'date' => $request->date,
-            'sales_number' => $consult+1,
+            'sales_number' => $request->sales_number,
             'state' => $request->state,
             'total' => $request->total,
 
         ]);
         
         $new_sale->save();
-
-    }
-    else{
 
         $sale_id=DB::select(
             "
@@ -75,6 +71,11 @@ class SalesController extends Controller
             "
         );
         return response($sale_id);
+
+    }
+    else{
+        return response('pailas, no se creo una monda socio');
+      
     }
         
         //
