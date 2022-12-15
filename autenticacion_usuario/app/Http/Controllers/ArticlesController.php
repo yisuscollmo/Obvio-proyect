@@ -38,40 +38,12 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
+      
+        $direccion=$this->validate_image($request);
 
-        // $request->validate([
-        //     'name' => $request->name, 
-        //     'code' => $request->code,
-        //     'categories_id' => $request->categories_id,
-        //     'selling_price' => $request->selling_price,
-        //     'stock' => $request->stock,
-        //     'description' => $request->description,
-        //     'active' => $request->active,
-        // ]);
-
-        // //Save image in server and get its url
-        // $url_image = $this->validate_image($request);
-
-        // $user = Article::create([
-        //     'roles_id' => 2, //All registered user have the USER role (id=2)
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        //     'image' => $url_image,
-        // ]);
-
-        // return response(
-        //     [
-        //         'message' => 'Cliente creado exitósamente.',
-        //         'new_user' => $user //Nuevo usuario creado
-        //     ]
-        // );
-
-
-        // $new_article = Article::create($request->all());
         $new_article = Article::create([
 
-            'image' => "https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg",
+            'image' => $direccion,
             'name' => $request->name, 
             'code' => $request->code,
             'categories_id' => $request->categories_id,
@@ -158,7 +130,9 @@ class ArticlesController extends Controller
 
 
         $article = Article::find($article);
-     
+        
+        // $direccion=$this->validate_image($request);
+
         $article->image="/storage/app/public/homeges/default.jpg"; 
         $article->name=$request->name;
         $article->code=$request->code;
@@ -200,15 +174,15 @@ class ArticlesController extends Controller
     }
 
     public function validate_image($request) {
-
+        return response('entramos socio');
         if ($request->hasfile('image')) {
             $name = uniqid() . time() . '.' . $request->file('image')->getClientOriginalExtension(); //46464611435281365.jpg
-            $request->file('image')->storeAs('public', $name);
-            return '/storage/app/public' . '/' . $name; //uploads/46464611435281365.jpg
+            $request->file('image')->storeAs('public/products', $name);
+            return '/storage/products' . '/' . $name; //uploads/46464611435281365.jpg
 
         } else {
 
-            return null;
+            return '/storage/products/default.jpg';
         }
     }
 }

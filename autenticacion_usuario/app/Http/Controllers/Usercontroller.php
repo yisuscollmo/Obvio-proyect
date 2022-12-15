@@ -83,7 +83,7 @@ class Usercontroller extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'roles_id' => $request = 2,
-            'image' => '/storage/app/public/homeges/default.jpg',
+            'image' => '/storage/homeges/default.jpg',
         ]);
         
         $new_user->save();

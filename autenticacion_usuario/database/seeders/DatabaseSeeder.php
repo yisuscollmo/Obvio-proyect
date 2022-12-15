@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => date("Y/m/d"), //verified today
                 'created_at' => date("Y/m/d"), //created today
                 'password' => Hash::make('yisas123'), //default admin password: admin123
-                'image' => '/storage/homeges/default.jpg',
+                'image' => '/storage/users/default.jpg',
             
             ]
         );

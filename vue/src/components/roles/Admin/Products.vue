@@ -11,9 +11,9 @@
       </button>
 
     </div>
-   
+
     <div id="articulos">
-       <!-- card -->
+      <!-- card -->
       <div class="card mb-3" style="max-width: 540px;" v-for="p in product_list_mostrar">
         <div class="row g-0">
 
@@ -36,26 +36,25 @@
 
                   <li class="dropdown-menu">
                     <div id="edi-eli">
-                      <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                       @click="edit_product(p)"
+                      <button type="button" class="btn btn-success" data-bs-toggle="modal" @click="edit_product(p)"
                         data-bs-target="#editar">
                         <i class="bi bi-pencil-fill"></i>
                       </button>
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
-                      data-bs-target="#eliminar" @click="eliminar(p)">
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar"
+                        @click="eliminar(p)">
                         <i class="bi bi-trash"></i>
                       </button>
                     </div>
                   </li>
                 </div>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
   </div>
- 
+
   <!-- Modal-eliminar -->
   <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -64,11 +63,12 @@
           <h5> Delete Product</h5>
         </div>
         <div class="modal-body">
-          estas seguro de elimar el producto {{nameborrar}}
+          estas seguro de elimar el producto {{ nameborrar }}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="delete_product()">eliminar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+            @click="delete_product()">eliminar</button>
         </div>
       </div>
     </div>
@@ -121,19 +121,22 @@
     </div>
   </div>
   <!-- Modal-crear -->
-  <div class="modal fade" id="crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade " id="crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">create new product</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body ">
           <form>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">image:</label>
-              <input type="file" class="form-control" id="recipient-name">
+              <input type="file" class="form-control" id="recipient-name"  @change="obtener_image">
             </div>
+            <figure v-if="imagenminiatura!=null">
+                <img :src="imagen" id="imagenminiatura" alt="">
+          </figure>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">code:</label>
               <input type="text" class="form-control" id="recipient-name" v-model="product.code">
@@ -167,7 +170,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="close">Close</button>
-          <button type="button" class="btn btn-success"  data-bs-dismiss="modal" @click="new_product()">create</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="new_product()">create</button>
         </div>
       </div>
     </div>
@@ -184,17 +187,18 @@ export default {
       nameborrar: "",
       product: {
         name: "",
+        image: null,
         code: "",
-        image: 1,
         stock: "",
         description: "",
         selling_price: "",
         categories_id: "",
         active: "",
-        image:'1'
+       
       },
+      imagenminiatura: null,
       product_edit: {},
-      idelete:""
+      idelete: ""
     };
   },
   mounted() {
@@ -206,9 +210,26 @@ export default {
       this.product_list = response.data;
       this.product_list_mostrar = this.product_list;
     },
+    obtener_image(e) {
+
+      let file = e.target.files[0];
+      console.log(file);
+      this.product.image = file;
+  
+      this.cargarimagen(file);
+    },
+    cargarimagen(file) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        this.imagenminiatura = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    },
     async new_product() {
-      // console.log(this.product);
+      console.log(this.product);
       let response = await this.axios.post("/api/articles", this.product);
+      this.product="";
+      // console.log('respondio: '+response.data);
       this.get_products();
 
     },
@@ -219,17 +240,17 @@ export default {
     async update_products() {
       let id = this.product_edit.id;
       let response = await this.axios.put("/api/articles/" + id, this.product_edit)
-      .then(this.close());
+        .then(this.close());
       this.get_products();
     },
-    close(){
-      this.product="";
-      this.edit_product="";
+    close() {
+      this.product = "";
+      this.edit_product = "";
     },
-    eliminar(p){
-             this.nameborrar=p.name;
-             this.idelete=p.id
-             console.log('a borra' + this.produlete);
+    eliminar(p) {
+      this.nameborrar = p.name;
+      this.idelete = p.id
+      console.log('a borra' + this.produlete);
     },
 
     async delete_product(p) {
@@ -251,6 +272,11 @@ export default {
       );
     },
   },
+  computed: {
+    imagen() {
+      return this.imagenminiatura
+    }
+  }
 };
 </script>
 <style scoped>
