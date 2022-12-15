@@ -16,7 +16,7 @@ class ImagesFactory extends Factory
         return [
 
             'name' => $this->faker->name(''),
-            'image' => "/storage/app/public/homeges/default.jpg",
+            'image' => "/storage/homeges/default.jpg",
             //
         ];
     }

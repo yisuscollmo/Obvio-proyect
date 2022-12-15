@@ -25,7 +25,9 @@
             <h1 id="neimage">{{ i.name }}</h1>
             <img :src="axios.defaults.baseURL + i.image" alt="">
           </figure>
-
+          <button class="btn btn-danger delbuton" type="button" @click="delete_image(i.id)">
+            <i class="bi bi-trash"></i>
+          </button>
         </article>
 
       </div>
@@ -106,6 +108,12 @@ img {
   width: 7rem;
   margin: 1rem;
 }
+.delbuton{
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+
+}
 </style>
 <script>
 export default {
@@ -118,6 +126,7 @@ export default {
         name:"",
         image:"",
       },
+
       imagenminiatura: null,
     };
   },
@@ -166,12 +175,14 @@ export default {
     },
    
    
-    async delete_product(p) {
-      let id = this.idelete;
+    async delete_image(p) {
+      let id = p;
       console.log(id);
-      let response = await this.axios.delete("/api/articles/" + id);
-      this.get_products();
-
+      
+      if(confirm("Are you sure you want to delete")){
+        let response = await this.axios.delete("/api/images/" + id);
+        this.get_images();
+      }
     },
     filtrar() {
       this.product_list_mostrar = this.product_list.filter(

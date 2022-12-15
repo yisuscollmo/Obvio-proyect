@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cr;
+use App\Models\sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -36,7 +37,46 @@ class carrito extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+              $consult= DB::select(
+            "
+            SELECT sales_number
+            FROM sales
+            WHERE sales.state=1
+
+            "
+        );
+       
+    if($consult=null){
+       
+        $new_sale = sales::create([
+           
+            'users_id' => $request->users_id,
+            'date' => $request->date,
+            'sales_number' => $request->sales_number,
+            'state' => $request->state,
+            'total' => $request->total,
+
+        ]);
+        
+        $new_sale->save();
+
+        $sale_id=DB::select(
+            "
+            SELECT sales.id
+            FROM sales
+            WHERE sales.state=1
+            "
+        );
+        return response($sale_id);
+
+    }
+    else{
+        return response('pailas, no se creo una monda socio');
+      
+    }
+
+        
     }
 
     /**

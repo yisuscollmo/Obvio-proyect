@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\cr;
 use App\Models\images as ModelsImages;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class images extends Controller
 {
@@ -98,8 +101,15 @@ class images extends Controller
      * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cr $cr)
+    public function destroy($id)
     {
+       
+        $images = ModelsImages::find($id);
+
+        if (File::exists(public_path($images->image)))
+        File::delete(public_path($images->image));
+
+        $images ->delete();
         //
     }
     public function validate_image($request) {
@@ -107,11 +117,12 @@ class images extends Controller
         if ($request->hasfile('image')) {
             $name = uniqid() . time() . '.' . $request->file('image')->getClientOriginalExtension(); //46464611435281365.jpg
             $request->file('image')->storeAs('public/homeges', $name);
-            return '/storage/app/public/homeges' . '/' . $name; //uploads/46464611435281365.jpg
+            return '/storage/homeges' . '/' . $name; //uploads/46464611435281365.jpg
 
         } else {
 
-            return '/storage/app/public/homeges/default.jpg';
+            return '/storage/homeges/default.jpg';
+
         }
     }
 }

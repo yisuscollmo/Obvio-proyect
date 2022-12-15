@@ -26,7 +26,7 @@
                 <div id="user_data">
                     <h1> My Profile</h1>
                     <h2>{{ role[user.roles_id] }}</h2>
-                    <img :src="axios.defaults.baseURL +user.image" alt="">
+                    <img :src="axios.defaults.baseURL + user.image" alt="">
                     <p>Name: {{ user.name }}</p>
                     <p>Email: {{ user.email }}</p>
                  

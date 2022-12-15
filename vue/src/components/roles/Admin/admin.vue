@@ -37,6 +37,7 @@
 
                 <button @click="logout()" class="btn btn-success ">Logout</button>
             </div>
+            <button class="btn btn-success ">Edit Profile</button>
         </div>
 
 

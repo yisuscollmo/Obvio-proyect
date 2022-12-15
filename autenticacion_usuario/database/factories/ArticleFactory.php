@@ -20,7 +20,7 @@ class ArticleFactory extends Factory
             'selling_price' => $this->faker->numberBetween(100000, 1000000),
             'stock' => $this->faker->numberBetween(0, 100),
             'description' => $this->faker->text($maxNbChars = 100),
-            'image' => "/storage/app/public/homeges/default.jpg",
+            'image' => "/storage/homeges/default.jpg",
             'active' => true,  
             //
         ];

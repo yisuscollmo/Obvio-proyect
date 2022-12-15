@@ -35,8 +35,19 @@ main{
     font-family: fantasy;
     transition: none !important;
   }
-  #perfil{
+#perfil{
     background-color: gainsboro;
   }
-
+.offcanvas{
+    background-color: rgb(255, 255, 255);
+}
+  #user_data{
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgb(8, 134, 92);
+}
+h2, p{
+    color: #ffffff;
+}
  

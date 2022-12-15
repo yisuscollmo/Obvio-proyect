@@ -13,11 +13,11 @@
                         Filtrar
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" @click="get_ventas">todas</a></li>
-                        <li><a class="dropdown-item" href="#" @click="filtrando(1)">en proceso</a></li>
-                        <li><a class="dropdown-item" href="#" @click="filtrando(2)">Terminadas</a></li>
-                        <li><a class="dropdown-item" href="#" @click="filtrando(3)">Entrega en proceso</a></li>
-                        <li><a class="dropdown-item" href="#" @click="filtrando(4)">Producto's entregado's</a></li>
+                        <li><a class="dropdown-item btn btn-success " href="#" @click="get_ventas">todas</a></li>
+                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(1)">en proceso</a></li>
+                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(2)">Terminadas</a></li>
+                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(3)">Entrega en proceso</a></li>
+                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(4)">Producto's entregado's</a></li>
                     </ul>
                 </div>
 
@@ -64,11 +64,14 @@
                             <td> <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#ediventa" @click="edit_sale(p)">
                                     <i class="bi bi-pencil-fill"></i>
-                                </button></td>
-                            <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                </button>
+                            </td>
+                            <td>
+                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#eliventa" @click="sale_borrar(p)">
                                     <i class="bi bi-trash"></i>
-                                </button></td>
+                                </button>
+                            </td>
                         </div>
                     </tr>
                 </tbody>
@@ -179,7 +182,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" @click="new_sale">Create</button>
+                    <button type="button" class="btn btn-success" @click="new_sale" data-bs-dismiss="modal">Create</button>
                 </div>
             </div>
         </div>
@@ -223,10 +226,11 @@ export default {
             this.ventas_copia = this.ventas_list;
         },
         async new_sale() {
-            console.log('sale:'+ JSON.stringify(this.sale));
+            // console.log('sale:'+ JSON.stringify(this.sale));
             let response = await this.axios.post("/api/sales/", this.sale);
-            // console.log("response: "+response.data);
+            console.log("response: " + response.data);
             this.get_ventas();
+            this.sale="";
         },
         edit_sale(p) {
             this.sale_edit = p;
