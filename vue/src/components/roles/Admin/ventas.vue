@@ -16,8 +16,10 @@
                         <li><a class="dropdown-item btn btn-success " href="#" @click="get_ventas">todas</a></li>
                         <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(1)">en proceso</a></li>
                         <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(2)">Terminadas</a></li>
-                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(3)">Entrega en proceso</a></li>
-                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(4)">Producto's entregado's</a></li>
+                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(3)">Entrega en
+                                proceso</a></li>
+                        <li><a class="dropdown-item btn btn-success " href="#" @click="filtrando(4)">Producto's
+                                entregado's</a></li>
                     </ul>
                 </div>
 
@@ -67,15 +69,116 @@
                                 </button>
                             </td>
                             <td>
-                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#eliventa" @click="sale_borrar(p)">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </td>
                         </div>
+                        <td>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" id="factura">
+                                <i class="bi bi-journal-text"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-10 ">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                <h1 class="h6 text-black">Factura</h1>
+
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <h1 class="h6 text-black">Juan Manuel Murcia</h1>
+                                <h1 class="h6 text-black">Vendedor</h1>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <strong>Fecha</strong>
+                                <br>
+                                2021-05-03 <br>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row text-center" style="margin-bottom: 2rem;">
+                            <div class="col-xs-6">
+                                <h1 class="h2">Cliente</h1>
+                                <strong>Andres felipe vargas</strong>
+                            </div>
+                            <div class="col-xs-6">
+                                <h1 class="h2">Remitente</h1>
+                                <strong>jesus alberto collazos</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="table table-condensed table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Descripción</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio unitario</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{ tablaProductos }}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" class="text-right">Subtotal</td>
+                                            <td>{{ subtotal }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-right">Descuento</td>
+                                            <td>{{ descuento }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-right">Subtotal con descuento</td>
+                                            <td>{{ subtotalConDescuento }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-right">Impuestos</td>
+                                            <td>{{ impuestos }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-right">
+                                                <h4>Total</h4>
+                                            </td>
+                                            <td>
+                                                <h4>{{ total }}</h4>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <p class="h5">Gracias por su compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -84,15 +187,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header text-black">
-                    <h5 >{{borrar}}</h5>
+                    <h5>{{ borrar }}</h5>
                 </div>
                 <div class="modal-body">
                     Estas seguro de elimar esta venta?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >cancelar</button>
-                    <button type="button" class="btn btn-danger" @click="delete_sale"
-                        data-bs-dismiss="modal" @auxclick="delete_sale">eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+                    <button type="button" class="btn btn-danger" @click="delete_sale" data-bs-dismiss="modal"
+                        @auxclick="delete_sale">eliminar</button>
                 </div>
             </div>
         </div>
@@ -155,11 +258,11 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                               Escoge los articulos a vender
+                                Escoge los articulos a vender
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><button class="dropdown-item" type="button">Action</button></li>
-                             
+
                             </ul>
                         </div>
                         <div class="mb-3">
@@ -182,7 +285,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" @click="new_sale" data-bs-dismiss="modal">Create</button>
+                    <button type="button" class="btn btn-success" @click="new_sale"
+                        data-bs-dismiss="modal">Create</button>
                 </div>
             </div>
         </div>
@@ -230,7 +334,7 @@ export default {
             let response = await this.axios.post("/api/sales/", this.sale);
             console.log("response: " + response.data);
             this.get_ventas();
-            this.sale="";
+            this.sale = "";
         },
         edit_sale(p) {
             this.sale_edit = p;
@@ -245,7 +349,7 @@ export default {
         },
         async delete_sale() {
             let id = this.idelete;
-            console.log('id: '+ id)
+            console.log('id: ' + id)
             let response = await this.axios.delete("/api/sales/" + id);
             this.get_ventas();
         },
